@@ -1,0 +1,53 @@
+{
+  "name": "organigraph",
+  "version": "0.1.0",
+  "dependencies": {
+    "@fullcalendar/core": "^5.7.2",
+    "@semapps/archipelago-layout": "0.3.4",
+    "@semapps/auth-provider": "0.3.4",
+    "@semapps/date-components": "0.3.4",
+    "@semapps/geo-components": "0.3.4",
+    "@semapps/markdown-components": "0.3.4",
+    "@semapps/semantic-data-provider": "0.3.4",
+    "circlepack-chart": "^1.5.1",
+    "react-kapsule": "^2.2.2",
+    "d3": "^6.7.0",
+    "date-fns": "~2.8.1",
+    "history": "4.10.1",
+    "leaflet": "^1.7.1",
+    "leaflet.markercluster": "^1.4.1",
+    "prop-types": "^15.7.2",
+    "ra-language-french": "^3.13.1",
+    "react": "^16.13.1",
+    "react-admin": "^3.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "react-scripts": "3.4.0",
+    "source-map-explorer": "^2.5.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

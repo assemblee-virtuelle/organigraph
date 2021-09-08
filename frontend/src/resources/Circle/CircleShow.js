@@ -42,6 +42,7 @@ const CircleShow = props => (
           primaryText={record => record['pair:label']}
           secondaryText={record => <DateField record={record} source="created" />}
           inversePredicate="pair:documents"
+          emptyText="Aucun document lié à ce cercle"
         />
       </ReferenceArrayField>
       <ReferenceArrayField reference="Event" source="pair:concernedBy" perPage={4} alwaysShow>
@@ -50,6 +51,7 @@ const CircleShow = props => (
           primaryText={record => record['pair:label']}
           secondaryText={record => <DateField record={record} source="pair:startDate" showTime />}
           inversePredicate="pair:concerns"
+          emptyText="Aucune réunion prévue pour le moment"
         />
       </ReferenceArrayField>
     </ShowSide>

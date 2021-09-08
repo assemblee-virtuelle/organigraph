@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SmallList = ({ icon, primaryText, secondaryText, inversePredicate }) => {
+const SmallList = ({ icon, primaryText, secondaryText, emptyText, inversePredicate }) => {
   const { ids, data, basePath, total, perPage } = useListContext();
   const record = useRecordContext();
   const classes = useStyles();
@@ -50,7 +50,7 @@ const SmallList = ({ icon, primaryText, secondaryText, inversePredicate }) => {
         ))}
         {ids.length === 0 &&
           <ListItem dense className={classes.listItemGrey}>
-            <ListItemText primary="Aucune réunion prévue pour le moment" className={classes.primaryText} />
+            <ListItemText primary={emptyText} className={classes.primaryText} />
           </ListItem>
         }
       </List>

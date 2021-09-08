@@ -18,13 +18,13 @@ Basée sur l'ontologie PAIR, elle intègre les concepts et relations spécifique
 #################################################################
 
 ###  http://virtual-assembly.org/ontologies/organigraph#leadedBy
-:leadedBy rdf:type owl:ObjectProperty ;
+:leadBy rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf <http://virtual-assembly.org/ontologies/pair#interSubjectProperty> ;
           owl:inverseOf :leads ;
           rdfs:domain :Circle ;
           rdfs:range <http://virtual-assembly.org/ontologies/pair#Person> ;
           rdfs:label "a pour référent"@fr ,
-                     "leaded by"@en .
+                     "lead by"@en .
 
 
 ###  http://virtual-assembly.org/ontologies/organigraph#leads

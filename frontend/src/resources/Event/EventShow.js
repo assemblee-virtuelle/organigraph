@@ -1,9 +1,9 @@
 import React from 'react';
 import { ShowBase, DateField, ChipField } from 'react-admin';
-import { MarkdownField } from '@semapps/markdown-components';
 import { ReferenceField } from "@semapps/semantic-data-provider";
 import EventTitle from './EventTitle';
 import ShowSide from "../../layout/ShowSide";
+import MarkdownField from "../../common/field/MarkdownField";
 
 const EventShow = props => (
   <ShowBase  {...props}>

@@ -54,7 +54,7 @@ const AppBar = () => {
   const resource = matches ? matches[1] : 'Circle';
 
   return (
-    <MuiAppBar position="sticky">
+    <MuiAppBar position="sticky" className={classes.root}>
       <Box className={classes.header}>
         <Grid container>
           <Grid item xs={8}>

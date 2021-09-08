@@ -8,12 +8,12 @@ import ScrollToTop from './ScrollToTop';
 const useStyles = makeStyles(theme => ({
   topBar: {
     height: 45,
-    backgroundColor: '#28ccfb',
+    backgroundImage: 'radial-gradient(circle at 50% 14em, #ADDEEC 0%, #28ccfb 100%)',
     paddingTop: 5,
   },
   userMenu: {
     float: 'right',
-    backgroundColor: '#28ccfb',
+    backgroundColor: 'unset',
     '& button': {
       padding: '6px 12px'
     }

@@ -1,4 +1,3 @@
-import { PairResourceCreate } from '../../pair';
 import CircleEdit from './CircleEdit';
 import CircleList from './CircleList';
 import CircleShow from './CircleShow';
@@ -13,12 +12,14 @@ export default {
     edit: CircleEdit,
     icon: RadioButtonUncheckedIcon,
     options: {
-      label: 'Cercles'
+      label: 'Cercles',
+      panelSize: 5
     }
   },
   dataModel: {
     types: ['og:Circle'],
     containerUri: process.env.REACT_APP_MIDDLEWARE_URL + 'groups',
+    dereference: ['sec:publicKey', 'pair:hasLocation/pair:hasPostalAddress', 'pair:organizationOfMembership'],
     slugField: 'pair:label'
   },
   translations: {
@@ -29,9 +30,13 @@ export default {
         'og:purpose': 'Raison d\'être',
         'og:accountabilities': 'Redevabilités',
         'og:domain': 'Domaine',
-        'og:leadBy': 'A pour référent',
-        'pair:supportedBy': 'Soutenu par',
-        'pair:partOf': 'Fait partie de'
+        'og:leadBy': 'Référents',
+        'pair:involves': 'Contributeurs',
+        'pair:partOf': 'Fait partie de',
+        'pair:hasPart': 'Sous-cercles',
+        'pair:documentedBy': 'Documents',
+        'pair:concernedBy': 'Agenda',
+        'pair:homePage': 'Canaux de communication'
       }
     }
   }

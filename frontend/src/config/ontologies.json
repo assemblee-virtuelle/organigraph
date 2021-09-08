@@ -10,6 +10,11 @@
     "url": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   },
   {
+    "prefix": "rdfs",
+    "owl": "",
+    "url": "http://www.w3.org/2000/01/rdf-schema#"
+  },
+  {
     "prefix": "xsd",
     "owl": "",
     "url": "http://www.w3.org/2001/XMLSchema#"
@@ -25,19 +30,29 @@
     "url": "http://schema.org/"
   },
   {
-    "prefix": "foaf",
+    "prefix": "sec",
     "owl": "",
-    "url": "http://xmlns.com/foaf/0.1/"
-  },
-  {
-    "prefix": "pair",
-    "owl": "",
-    "url": "http://virtual-assembly.org/ontologies/pair#"
+    "url": "https://w3id.org/security#"
   },
   {
     "prefix": "skos",
     "owl": "",
     "url": "http://www.w3.org/2004/02/skos/core#"
+  },
+  {
+    "prefix": "foaf",
+    "owl": "",
+    "url": "http://xmlns.com/foaf/0.1/"
+  },
+  {
+    "prefix": "dc",
+    "owl": "",
+    "url": "http://purl.org/dc/terms/"
+  },
+  {
+    "prefix": "pair",
+    "owl": "http://virtual-assembly.org/ontologies/pair-2020-winter/ontology.ttl",
+    "url": "http://virtual-assembly.org/ontologies/pair#"
   },
   {
     "prefix": "semapps",
@@ -46,7 +61,7 @@
   },
   {
     "prefix": "og",
-    "owl": "https://gist.githubusercontent.com/srosset81/2baa67ab8178d0c25d24263a64f45a26/raw/3ff2d9653213f266767106bb23f9b67e7ba1d454/organigraph.owl",
+    "owl": "https://raw.githubusercontent.com/assemblee-virtuelle/organigraph/master/ontology/organigraph.owl",
     "url": "http://virtual-assembly.org/ontologies/organigraph#"
   }
 ]

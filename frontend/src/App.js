@@ -1,12 +1,13 @@
 import React from 'react';
-import { Admin, Resource } from 'react-admin';
-import { theme } from '@semapps/archipelago-layout';
+import { Admin } from 'react-admin';
 import { LoginPage, LogoutButton } from '@semapps/auth-provider';
 import { createBrowserHistory as createHistory } from 'history';
 
 import i18nProvider from './config/i18nProvider';
 import authProvider from './config/authProvider';
 import dataProvider from './config/dataProvider';
+import theme from './config/theme';
+
 import * as resources from './resources';
 import SplitViewResource from "./layout/SplitViewResource";
 import Layout from './layout/Layout';

@@ -1,43 +1,31 @@
 import React from 'react';
-import { ShowButton, SimpleForm, useEditContext } from 'react-admin';
-import {Box, Typography} from "@material-ui/core";
+import { ShowButton, useEditContext, SimpleForm } from 'react-admin';
+import {Box, Grid, Typography} from "@material-ui/core";
 
-const EditSide = ({ undoable, mutationMode, title, className, ...rest }) => {
-  const {
-    basePath,
-    defaultTitle,
-    hasList,
-    hasShow,
-    record,
-    redirect,
-    resource,
-    save,
-    saving,
-    version,
-  } = useEditContext(rest);
+const EditSide = ({ title, children, ...rest }) => {
+  const editContext = useEditContext(rest);
 
-  if( !record ) return null;
+  if( !editContext.record ) return null;
 
   return(
     <>
-      <Box pt={2} pl={2} pr={2}>
-        <Typography variant="h4" color="textPrimary">
-          {title && React.cloneElement(title, { className, record, ...rest })}
-          <ShowButton basePath={basePath} record={record} />
-        </Typography>
-      </Box>
-      <SimpleForm
-        resource={resource}
-        basePath={basePath}
-        record={record}
-        saving={saving}
-        save={save}
-        redirect={redirect}
-        undoable={undoable}
-        mutationMode={mutationMode}
-        version={version}
-        {...rest}
-      />
+      <Grid container>
+        <Grid item xs={9}>
+          <Box pt={2} pl={2}>
+            <Typography variant="h4" color="textPrimary">
+              {title && React.cloneElement(title, { record: editContext.record, ...rest })}
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid item xs={3}>
+          <Box pt={2} pr={2} display="flex" justifyContent="flex-end">
+            <ShowButton basePath={editContext.basePath} record={editContext.record} />
+          </Box>
+        </Grid>
+      </Grid>
+      <SimpleForm {...editContext}>
+        {children}
+      </SimpleForm>
     </>
   );
 };

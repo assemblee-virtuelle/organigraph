@@ -1,26 +1,18 @@
 import React from 'react';
-import { FormTab, SelectInput, TabbedForm, TextInput } from 'react-admin';
-import { EditWithPermissions } from '@semapps/auth-provider';
-import { ReferenceInput } from '@semapps/semantic-data-provider';
+import { EditBase, TextInput } from 'react-admin';
 import { MarkdownInput } from '@semapps/markdown-components';
-import { AgentsInput } from '../../pair';
-import DocumentTitle from './DocumentTitle';
+import { CircleInput} from '../../common/input';
+import CircleTitle from "../Circle/CircleTitle";
+import EditSide from "../../layout/EditSide";
 
 export const DocumentEdit = props => (
-  <EditWithPermissions title={<DocumentTitle />} {...props}>
-    <TabbedForm redirect="show">
-      <FormTab label="Données">
-        <TextInput source="pair:label" fullWidth />
-        <MarkdownInput multiline source="pair:description" fullWidth />
-        <ReferenceInput reference="Type" source="pair:hasType" filter={{ a: 'pair:DocumentType' }}>
-          <SelectInput optionText="pair:label" />
-        </ReferenceInput>
-      </FormTab>
-      <FormTab label="Relations">
-        <AgentsInput source="pair:documents" />
-      </FormTab>
-    </TabbedForm>
-  </EditWithPermissions>
+  <EditBase {...props}>
+    <EditSide title={<CircleTitle />} redirect="show">
+      <TextInput source="pair:label" fullWidth />
+      <MarkdownInput multiline source="pair:description" fullWidth />
+      <CircleInput source="pair:documents" />
+    </EditSide>
+  </EditBase>
 );
 
 export default DocumentEdit;

@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useCallback, useState, useEffect } from 'react';
 import { useListContext } from "react-admin";
-import { makeStyles, useTheme } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import CirclePack from 'circlepack-chart';
 import fromKapsule from "react-kapsule";
 import { useHistory, useLocation } from "react-router-dom";
@@ -8,27 +8,24 @@ import * as d3 from 'd3';
 
 const CirclePackReact = fromKapsule(CirclePack, { methodNames: ['zoomToNode', 'zoomReset', 'zoomBy']});
 
-const useStyles = makeStyles(theme => {
-  console.log('theme', theme);
-  return ({
-    wrapper: {
-      width: '100%',
-      height: 'calc(100vh - 100px)',
-    },
-    nodeCircle: {
-      '& text': {
-        fontSize: 22,
-        fontWeight: 'bold'
-      }
-    },
-    nodeRole: {
-      '& text': {
-        fontSize: 13,
-        fontWeight: 'bold'
-      }
+const useStyles = makeStyles(theme => ({
+  wrapper: {
+    width: '100%',
+    height: 'calc(100vh - 101px)',
+  },
+  nodeCircle: {
+    '& text': {
+      fontSize: 17,
+      fontWeight: 'bold'
     }
-  })
-});
+  },
+  nodeRole: {
+    '& text': {
+      fontSize: 12,
+      fontWeight: 'bold'
+    }
+  }
+}));
 
 const d3color = d3.scaleOrdinal(d3.schemePaired);
 
@@ -52,9 +49,9 @@ const CirclePackingReact = () => {
   const classes = useStyles();
   const history = useHistory();
   const location = useLocation();
-  const theme = useTheme();
   const { ids, data, loading, basePath } = useListContext();
-  const [ selectedNode, setSelectedNode ] = useState({});
+  const [ selectedNode, setSelectedNode ] = useState(null);
+  const [ waitChartLoad, setWaitChartLoad ] = useState(true);
 
   const root = useMemo(() => {
     if( !loading && ids.length > 0 ) {
@@ -65,22 +62,20 @@ const CirclePackingReact = () => {
     }
   }, [ids, data, loading]);
 
-  console.log('root', data, root);
-
   const onClick = useCallback(node => {
     if( node ) {
-      if( node.id === selectedNode.id ) {
+      if( selectedNode && node.id === selectedNode.id ) {
         history.push(basePath + '/' + encodeURIComponent(root.id) + '/show');
       } else {
         history.push(basePath + '/' + encodeURIComponent(node.id) + '/show');
       }
     }
-  }, [chart, history, basePath, selectedNode, root]);
+  }, [history, basePath, selectedNode, root]);
 
-  const size = useCallback(node => node.data['og:accountabilities'] ? node.data['og:accountabilities']?.split(/\r\n|\r|\n/).length : 2, []);
+  const size = useCallback(node => node.depth === 1 ? 10 : node.data['og:accountabilities'] ? node.data['og:accountabilities']?.split(/\r\n|\r|\n/).length : 2, []);
   const label = useCallback(node => node.data['pair:label'], []);
   const color = useCallback(node => d3color(node ? node.depth : null), []);
-  const nodeClassName = useCallback(node => node.children && node.children.length > 0 ? classes.nodeCircle : classes.nodeRole, [classes])
+  const nodeClassName = useCallback(node => node.depth === 1 ? classes.nodeCircle : classes.nodeRole, [classes])
 
   useEffect(() => {
     if( root ) {
@@ -88,15 +83,25 @@ const CirclePackingReact = () => {
       if( paths.length > 2 ) {
         const uri = decodeURIComponent(paths[2]);
         const node = searchTree(root, uri);
-        if( node ) {
+        if( node && node.id !== selectedNode?.id ) {
           setSelectedNode(node);
-          chart.current.zoomToNode(node);
         }
       } else {
         history.push(basePath + '/' + encodeURIComponent(root.id) + '/show');
       }
     }
-  }, [location, history, chart, root, setSelectedNode]);
+  }, [location, history, root, selectedNode, setSelectedNode, basePath]);
+
+  useEffect(() => {
+    if( selectedNode ) {
+      if( waitChartLoad ) {
+        // On first call, we wait a bit before zooming or it won't work (chart must be fully rendered first)
+        setTimeout(() => setWaitChartLoad(false), 700);
+      } else {
+        chart.current.zoomToNode(selectedNode);
+      }
+    }
+  }, [selectedNode, waitChartLoad, setWaitChartLoad]);
 
   return(
     <div className={classes.wrapper} ref={wrapper}>

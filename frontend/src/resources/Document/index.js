@@ -1,18 +1,19 @@
-import { PairResourceCreate } from '../../pair';
 import DocumentEdit from './DocumentEdit';
 import DocumentList from './DocumentList';
 import DocumentShow from './DocumentShow';
+import DocumentCreate from "./DocumentCreate";
 import DescriptionIcon from '@material-ui/icons/Description';
 
 export default {
   config: {
     list: DocumentList,
     show: DocumentShow,
-    create: PairResourceCreate,
+    create: DocumentCreate,
     edit: DocumentEdit,
     icon: DescriptionIcon,
     options: {
-      label: 'Documents'
+      label: 'Documents',
+      panelSize: 6
     }
   },
   dataModel: {
@@ -28,7 +29,7 @@ export default {
         'pair:description': 'Description',
         'pair:comment': 'Courte description',
         'pair:hasType': 'Type',
-        'pair:documents': 'Documente',
+        'pair:documents': 'Cercle',
         'dc:created': 'Créé le',
         'dc:creator': 'Créé par'
       }

@@ -5,8 +5,13 @@ import { Route, Switch } from 'react-router-dom';
 import { Grid, Box, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    minHeight: 'calc(100vh - 98px)'
+  },
   panel: {
-    backgroundColor: theme.palette.grey['200']
+    backgroundColor: theme.palette.grey['200'],
+    // minHeight: 'calc(100vh - 98px)',
+    // height: '100%'
   }
 }));
 
@@ -61,8 +66,8 @@ const ResourceRoutes = ({ name, match, list, create, edit, show, options = defau
 
     return (
       <ResourceContextProvider value={name}>
-        <Grid container>
-          <Grid xs={8}>
+        <Grid container alignItems="stretch" className={classes.container}>
+          <Grid item xs={12 - (resourceData.options.panelSize || 4)}>
             <Box>
               <Route
                 path={`${basePath}`}
@@ -78,7 +83,7 @@ const ResourceRoutes = ({ name, match, list, create, edit, show, options = defau
               />
             </Box>
           </Grid>
-          <Grid xs={4} className={classes.panel}>
+          <Grid item xs={resourceData.options.panelSize || 4} className={classes.panel}>
             <Box p={0}>
               <Switch>
                 {create && (
@@ -128,27 +133,13 @@ const ResourceRoutes = ({ name, match, list, create, edit, show, options = defau
                     )}
                   />
                 )}
-                {/*{list && (*/}
-                {/*  <Route*/}
-                {/*    path={`${basePath}`}*/}
-                {/*    render={routeProps => (*/}
-                {/*      <WithPermissions*/}
-                {/*        component={list}*/}
-                {/*        basePath={basePath}*/}
-                {/*        {...routeProps}*/}
-                {/*        {...resourceData}*/}
-                {/*        syncWithLocation*/}
-                {/*      />*/}
-                {/*    )}*/}
-                {/*  />*/}
-                {/*)}*/}
               </Switch>
             </Box>
           </Grid>
         </Grid>
       </ResourceContextProvider>
     );
-  }, [basePath, name, create, edit, list, show, options, isRegistered, classes]);
+  }, [basePath, name, create, edit, list, show, resourceData, isRegistered, classes]);
 };
 
 const SplitViewResource = ({ intent = 'route', ...props }) =>

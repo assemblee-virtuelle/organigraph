@@ -1,6 +1,6 @@
 import React from 'react';
 import { Notification } from 'react-admin';
-import { Container, Grid, Box, useMediaQuery, ThemeProvider, makeStyles, Typography } from '@material-ui/core';
+import { Grid, Box, useMediaQuery, ThemeProvider, makeStyles, Typography } from '@material-ui/core';
 import { UserMenu, LogoutButton } from '@semapps/auth-provider';
 import AppBar from './AppBar';
 import ScrollToTop from './ScrollToTop';

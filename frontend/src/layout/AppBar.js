@@ -1,6 +1,7 @@
 import React from 'react';
 import { CreateButton } from 'react-admin';
-import { Box, makeStyles, AppBar as MuiAppBar, useMediaQuery, Grid} from '@material-ui/core';
+import { Box, makeStyles, AppBar as MuiAppBar, Grid } from '@material-ui/core';
+import { useLocation } from 'react-router-dom';
 import TabsMenu from "./TabsMenu";
 
 const useStyles = makeStyles(theme => ({
@@ -48,7 +49,10 @@ const useStyles = makeStyles(theme => ({
 
 const AppBar = () => {
   const classes = useStyles();
-  const xs = useMediaQuery(theme => theme.breakpoints.down('xs'));
+  const location = useLocation();
+  const matches = location.pathname.match(/^\/([^/]+)/);
+  const resource = matches ? matches[1] : 'Circle';
+
   return (
     <MuiAppBar position="sticky">
       <Box className={classes.header}>
@@ -58,7 +62,7 @@ const AppBar = () => {
           </Grid>
           <Grid item xs={4}>
             <Box display="flex" justifyContent="flex-end">
-              <CreateButton basePath="/Circle" />
+              <CreateButton basePath={'/' + resource} />
             </Box>
           </Grid>
         </Grid>

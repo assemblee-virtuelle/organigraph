@@ -1,6 +1,7 @@
 import React from 'react';
-import { SimpleShowLayout, useShowContext, EditButton } from 'react-admin';
+import { useShowContext, EditButton } from 'react-admin';
 import { Typography, Box, Grid } from "@material-ui/core";
+import FieldsList from "../common/list/FieldsList";
 
 const ShowSide = props => {
   const {
@@ -16,8 +17,8 @@ const ShowSide = props => {
 
   const {
     basePath,
-    defaultTitle,
-    hasList,
+    // defaultTitle,
+    // hasList,
     record,
     resource,
     version,
@@ -28,21 +29,21 @@ const ShowSide = props => {
   return(
     <>
       <Grid container>
-        <Grid item xs={8}>
+        <Grid item xs={9}>
           <Box pt={2} pl={2}>
             <Typography variant="h4" color="textPrimary">
               {title && React.cloneElement(title, { className, record, ...rest })}
             </Typography>
           </Box>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <Box pt={2} pr={2} display="flex" justifyContent="flex-end">
             <EditButton basePath={basePath} record={record} />
           </Box>
         </Grid>
       </Grid>
       <Box display="flex">
-        <SimpleShowLayout
+        <FieldsList
           resource={resource}
           basePath={basePath}
           record={record}

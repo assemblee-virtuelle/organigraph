@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SmallList = ({ icon, primaryText, secondaryText, inversePredicate }) => {
-  const { ids, data, basePath, total } = useListContext();
+  const { ids, data, basePath, total, perPage } = useListContext();
   const record = useRecordContext();
   const classes = useStyles();
 
@@ -56,7 +56,7 @@ const SmallList = ({ icon, primaryText, secondaryText, inversePredicate }) => {
       </List>
       <Box display="flex" justifyContent="flex-end" pr={1}>
         <Link to={`${basePath}/create?${searchParams}`}><Button label="Ajouter"><AddIcon /></Button></Link>
-        {total > ids.length &&
+        {total === perPage &&
           <Link to={`${basePath}?${searchParams}`}><Button label="Voir tous"><ListIcon/></Button></Link>
         }
       </Box>

@@ -12,7 +12,7 @@ const stopPropagation = e => e.stopPropagation();
 const handleClick = () => {};
 
 const GridList = ({ children, linkType, spacing, inversePredicate, ...rest }) => {
-  const { ids, data, basePath, total } = useListContext();
+  const { ids, data, basePath, total, perPage } = useListContext();
   const record = useRecordContext();
   const searchParams = new URLSearchParams({ filter: JSON.stringify({ [inversePredicate]: record.id }) });
 
@@ -39,7 +39,7 @@ const GridList = ({ children, linkType, spacing, inversePredicate, ...rest }) =>
           </Grid>
         ))}
       </Grid>
-      {total > ids.length &&
+      {total === perPage &&
         <Box display="flex" justifyContent="flex-end" p={1}>
           <Link to={`${basePath}?${searchParams}`}><Button label="Voir tous"><ListIcon /></Button></Link>
         </Box>

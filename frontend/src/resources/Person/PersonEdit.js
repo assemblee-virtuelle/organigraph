@@ -6,7 +6,10 @@ import { CirclesInput } from "../../common/input";
 import PersonTitle from "./PersonTitle";
 
 export const PersonEdit = props => (
-  <EditBase {...props}>
+  <EditBase
+    transform={data => ({ ...data, 'pair:label': `${data['pair:firstName']} ${data['pair:lastName']?.toUpperCase()}` })}
+    {...props}
+  >
     <EditSide title={<PersonTitle />} redirect="show">
       <TextInput source="pair:firstName" fullWidth />
       <TextInput source="pair:lastName" fullWidth />

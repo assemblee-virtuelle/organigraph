@@ -27,7 +27,7 @@ export const UsersInput = (props) => (
 );
 
 export const CircleInput = (props) => (
-  <ReferenceInput reference="Circle" {...props}>
+  <ReferenceInput reference="Circle" sort={{ field: 'pair:label', order: 'ASC' }} {...props}>
     <SelectInput optionText="pair:label" emptyValue="Tous les cercles" allowNull />
   </ReferenceInput>
 );

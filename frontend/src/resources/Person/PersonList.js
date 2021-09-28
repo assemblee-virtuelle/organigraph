@@ -10,7 +10,7 @@ const filters = [
 ];
 
 const PersonList = props => (
-  <ListBase {...props} perPage={500} sort={{ field: 'pair:lastName', order: 'DESC' }}>
+  <ListBase {...props} perPage={500} sort={{ field: 'pair:lastName', order: 'ASC' }}>
     <Box p={3} pt={1} pb={0}>
       <ListToolbar filters={filters} />
     </Box>

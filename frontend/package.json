@@ -10,7 +10,6 @@
     "@semapps/markdown-components": "0.3.4",
     "@semapps/semantic-data-provider": "0.3.4",
     "circlepack-chart": "^1.5.1",
-    "react-kapsule": "^2.2.2",
     "d3": "^6.7.0",
     "date-fns": "~2.8.1",
     "history": "4.10.1",
@@ -20,7 +19,9 @@
     "ra-language-french": "^3.13.1",
     "react": "^16.13.1",
     "react-admin": "^3.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-kapsule": "^2.2.2",
+    "react-resize-detector": "^6.7.6"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",

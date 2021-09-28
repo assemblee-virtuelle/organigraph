@@ -1,4 +1,5 @@
 import React, { useMemo, useRef, useCallback, useState, useEffect } from 'react';
+import { useResizeDetector } from 'react-resize-detector';
 import { useListContext } from "react-admin";
 import { makeStyles } from '@material-ui/core';
 import CirclePack from 'circlepack-chart';
@@ -44,7 +45,7 @@ function searchTree(element, matchingId){
 }
 
 const CirclePackingReact = () => {
-  const wrapper = useRef();
+  const { width, height, ref: wrapper } = useResizeDetector();
   const chart = useRef();
   const classes = useStyles();
   const history = useHistory();
@@ -107,8 +108,8 @@ const CirclePackingReact = () => {
     <div className={classes.wrapper} ref={wrapper}>
       <CirclePackReact
         ref={chart}
-        width={wrapper.current?.clientWidth}
-        height={wrapper.current?.clientHeight}
+        width={width}
+        height={height}
         data={root}
         color={color}
         onClick={onClick}

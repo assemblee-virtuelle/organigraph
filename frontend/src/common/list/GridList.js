@@ -22,7 +22,7 @@ const GridList = ({ children, linkType, spacing, inversePredicate, ...rest }) =>
         {ids.map(id => (
           <Grid item key={id} {...rest}>
             {linkType ? (
-              <Link to={linkToRecord(basePath, id, linkType)} onClick={stopPropagation}>
+              <Link to={linkToRecord(basePath, id, linkType) + '?' + searchParams} onClick={stopPropagation}>
                 {React.cloneElement(React.Children.only(children), {
                   record: data[id],
                   basePath,

@@ -26,7 +26,7 @@ const CircleShow = props => (
           <ChipField color="secondary" source="pair:label" />
         </SingleFieldList>
       </ReferenceArrayField>
-      <ReferenceArrayField reference="Person" source="og:leadBy">
+      <ReferenceArrayField reference="Person" source="og:leadBy" perPage={4} inversePredicate="og:leads">
         <GridList xs={3} linkType="show">
           <AvatarField label="pair:firstName" image="image" />
         </GridList>

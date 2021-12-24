@@ -62,7 +62,9 @@ const MultiUrlField = ({ source, ...rest }) => {
   const urlArray = record[source] ? Array.isArray(record[source]) ? record[source] : [record[source]] : [];
   return (
     urlArray.map(url => {
+      if( !url.startsWith('http') ) url = 'https://' + url;
       const parsedUrl = new URL(url);
+      if( !parsedUrl ) return null;
       const chip = domainMapping[parsedUrl.hostname] || { label: 'Site web', icon: <LanguageIcon />, color: '#ea', contrastText: 'black' };
       return(
         <a href={url} target="_blank" rel="noopener noreferrer" className={classes.link}>

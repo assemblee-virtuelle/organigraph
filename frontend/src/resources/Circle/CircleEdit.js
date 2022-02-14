@@ -10,7 +10,7 @@ export const CircleEdit = props => (
   <EditBase {...props}>
     <EditSide title={<CircleTitle />} redirect="show">
       <TextInput source="pair:label" fullWidth />
-      <TextInput source="og:purpose" fullWidth />
+      <MarkdownInput multiline source="og:purpose" fullWidth />
       <MarkdownInput multiline source="og:accountabilities" fullWidth />
       <TextInput source="og:domain" fullWidth />
       <UsersInput source="og:leadBy" />

@@ -14,7 +14,7 @@ import GridList from "../../common/list/GridList";
 const CircleShow = props => (
   <ShowBase {...props}>
     <ShowSide title={<CircleTitle />}>
-      <TextField source="og:purpose" />
+      <MarkdownField source="og:purpose" />
       <MarkdownField source="og:accountabilities" />
       <TextField source="og:domain" />
       <MultiUrlField source="pair:homePage" />

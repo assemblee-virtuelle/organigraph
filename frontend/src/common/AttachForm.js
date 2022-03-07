@@ -40,7 +40,6 @@ const AttachForm = () => {
   const refresh = useRefresh();
 
   const onSubmit = ({ url, partOf }) => {
-    console.log('url', url, partOf);
     dataProvider
       .getOne('Circle', { id: url })
       .then(({ data }) => {

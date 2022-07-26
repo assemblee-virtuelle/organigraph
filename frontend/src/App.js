@@ -1,6 +1,6 @@
 import React from 'react';
 import { Admin } from 'react-admin';
-import { LoginPage, LogoutButton } from '@semapps/auth-provider';
+import { PodLoginPage, LogoutButton } from '@semapps/auth-provider';
 import { createBrowserHistory as createHistory } from 'history';
 
 import i18nProvider from './config/i18nProvider';
@@ -13,6 +13,8 @@ import SplitViewResource from "./layout/SplitViewResource";
 import Layout from './layout/Layout';
 
 const history = createHistory();
+
+const LoginPage = props => <PodLoginPage text="Sélectionnez un hébergeur de PODs" podProviders={process.env.REACT_APP_POD_PROVIDERS.split(',')} {...props} />
 
 const App = () => (
   <Admin

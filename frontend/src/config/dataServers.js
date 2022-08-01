@@ -7,6 +7,12 @@ const dataServers = {
   pod: {
     pod: true,
     authServer: true,
+    containers: {
+      pod: {
+        'vcard:Location': ['/locations'],
+        'vcard:Individual': ['/profiles'],
+      },
+    },
   },
 };
 

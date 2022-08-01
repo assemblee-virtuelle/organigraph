@@ -28,12 +28,12 @@ const CircleShow = props => (
       </ReferenceArrayField>
       <ReferenceArrayField reference="Person" source="og:leadBy" perPage={4} inversePredicate="og:leads">
         <GridList xs={3} linkType="show">
-          <AvatarField label="pair:firstName" image="image" />
+          <AvatarField label="pair:label" image="image" />
         </GridList>
       </ReferenceArrayField>
-      <ReferenceArrayField reference="Person" source="pair:involves" perPage={4} inversePredicate="pair:involvedIn" filter={{ type: 'pair:Person' }}>
+      <ReferenceArrayField reference="Person" source="pair:affiliates" perPage={4} inversePredicate="pair:affiliatedBy" filter={{ type: 'pair:Person' }}>
         <GridList xs={3} linkType="show">
-          <AvatarField label="pair:firstName" image="image" />
+          <AvatarField label="pair:label" image="image" />
         </GridList>
       </ReferenceArrayField>
       <ReferenceArrayField reference="Document" source="pair:documentedBy" perPage={4} alwaysShow>

@@ -26,6 +26,7 @@ export default {
       fields: {
         'pair:firstName': 'Prénom',
         'pair:lastName': 'Nom de famille',
+        'pair:homePage': 'Site(s) web',
         'pair:comment': 'En deux mots',
         'og:leads': 'Référent',
         image: 'Photo',

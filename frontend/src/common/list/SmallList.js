@@ -30,7 +30,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const SmallList = ({ icon, primaryText, secondaryText, emptyText, target }) => {
-  const { ids, data, basePath, total, perPage, loaded } = useListContext();
+  const { ids, data, basePath, total, perPage, loaded, hasCreate } = useListContext();
   const record = useRecordContext();
   const classes = useStyles();
   const searchParams = new URLSearchParams({ filter: JSON.stringify({ [target]: record.id }) });
@@ -55,8 +55,10 @@ const SmallList = ({ icon, primaryText, secondaryText, emptyText, target }) => {
           </ListItem>
         }
       </List>
-      <Box display="flex" justifyContent="flex-end" pr={1}>
-        <Link to={`${basePath}/create?${searchParams}`}><Button label="Ajouter"><AddIcon /></Button></Link>
+      <Box display="flex" justifyContent="flex-end" pr={1} minHeight={15}>
+        {hasCreate &&
+          <Link to={`${basePath}/create?${searchParams}`}><Button label="Ajouter"><AddIcon /></Button></Link>
+        }
         {total > perPage &&
           <Link to={`${basePath}?${searchParams}`}><Button label="Voir tous"><ListIcon/></Button></Link>
         }

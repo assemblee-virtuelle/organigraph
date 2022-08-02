@@ -15,10 +15,10 @@ const PersonList = props => {
     <ListBase {...props} perPage={30} sort={{ field: 'pair:lastName', order: 'ASC' }}>
       <Box pl={3} pr={3} pt={1} pb={0}>
         <Grid container>
-          <Grid item xs={7}>
+          <Grid item xs={9}>
             <ListToolbar filters={filters} />
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={3}>
             <Box display="flex" justifyContent="flex-end">
               <TopPagination />
             </Box>

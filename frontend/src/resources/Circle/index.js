@@ -1,15 +1,15 @@
-import CircleEdit from './CircleEdit';
+// import CircleEdit from './CircleEdit';
 import CircleList from './CircleList';
 import CircleShow from './CircleShow';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import CircleCreate from "./CircleCreate";
+// import CircleCreate from "./CircleCreate";
 
 export default {
   config: {
     list: CircleList,
     show: CircleShow,
-    create: CircleCreate,
-    edit: CircleEdit,
+    // create: CircleCreate,
+    // edit: CircleEdit,
     icon: RadioButtonUncheckedIcon,
     options: {
       label: 'Cercles',

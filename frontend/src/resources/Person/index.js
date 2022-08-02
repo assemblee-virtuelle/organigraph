@@ -1,4 +1,4 @@
-import PersonEdit from './PersonEdit';
+// import PersonEdit from './PersonEdit';
 import PersonList from './PersonList';
 import PersonShow from './PersonShow';
 import PersonIcon from '@material-ui/icons/Person';
@@ -7,7 +7,7 @@ export default {
   config: {
     list: PersonList,
     show: PersonShow,
-    edit: PersonEdit,
+    // edit: PersonEdit,
     icon: PersonIcon,
     options: {
       label: 'Trombinoscope',

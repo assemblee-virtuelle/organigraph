@@ -1,15 +1,15 @@
-import EventEdit from './EventEdit';
+// import EventEdit from './EventEdit';
 import EventList from './EventList';
 import EventShow from './EventShow';
-import EventCreate from "./EventCreate";
+// import EventCreate from "./EventCreate";
 import EventIcon from '@material-ui/icons/Event';
 
 export default {
   config: {
     list: EventList,
     show: EventShow,
-    create: EventCreate,
-    edit: EventEdit,
+    // create: EventCreate,
+    // edit: EventEdit,
     icon: EventIcon,
     options: {
       label: 'Calendrier',

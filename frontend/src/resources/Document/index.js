@@ -1,15 +1,15 @@
-import DocumentEdit from './DocumentEdit';
+// import DocumentEdit from './DocumentEdit';
 import DocumentList from './DocumentList';
 import DocumentShow from './DocumentShow';
-import DocumentCreate from "./DocumentCreate";
+// import DocumentCreate from "./DocumentCreate";
 import DescriptionIcon from '@material-ui/icons/Description';
 
 export default {
   config: {
     list: DocumentList,
     show: DocumentShow,
-    create: DocumentCreate,
-    edit: DocumentEdit,
+    // create: DocumentCreate,
+    // edit: DocumentEdit,
     icon: DescriptionIcon,
     options: {
       label: 'Documents',

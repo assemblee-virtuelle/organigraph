@@ -31,7 +31,7 @@ export default {
         'og:accountabilities': 'Redevabilités',
         'og:domain': 'Domaine',
         'og:leadBy': 'Référents',
-        'pair:affiliates': 'Membres',
+        'pair:affiliatedBy': 'Membre',
         'pair:involves': 'Contributeurs',
         'pair:partOf': 'Fait partie de',
         'pair:hasPart': 'Sous-cercles',

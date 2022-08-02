@@ -1,6 +1,6 @@
 import React from 'react';
 import { Admin } from 'react-admin';
-import { PodLoginPage, LogoutButton } from '@semapps/auth-provider';
+import { SsoLoginPage, LogoutButton } from '@semapps/auth-provider';
 import { createBrowserHistory as createHistory } from 'history';
 
 import i18nProvider from './config/i18nProvider';
@@ -14,18 +14,16 @@ import Layout from './layout/Layout';
 
 const history = createHistory();
 
-const LoginPage = props => <PodLoginPage text="Sélectionnez un hébergeur de PODs" podProviders={process.env.REACT_APP_POD_PROVIDERS.split(',')} {...props} />
-
 const App = () => (
   <Admin
     history={history}
-    title="OrganiGraph"
+    title={process.env.REACT_APP_INSTANCE_NAME}
     authProvider={authProvider}
     dataProvider={dataProvider}
     i18nProvider={i18nProvider}
     layout={Layout}
     theme={theme}
-    loginPage={LoginPage}
+    loginPage={SsoLoginPage}
     logoutButton={LogoutButton}
   >
     {Object.entries(resources).map(([key, resource]) => (

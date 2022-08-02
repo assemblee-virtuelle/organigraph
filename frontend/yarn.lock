@@ -1681,6 +1681,15 @@
     "@material-ui/pickers" "^3.2.10"
     date-fns "~2.8.1"
 
+"@semapps/field-components@0.4.0-alpha.29":
+  version "0.4.0-alpha.29"
+  resolved "https://registry.yarnpkg.com/@semapps/field-components/-/field-components-0.4.0-alpha.29.tgz#c3811467cd230a724ed26f550ca3456986e312fe"
+  integrity sha512-XTPX190sITxLaVu1k5+qb4Gk6wm3LERJXEmD4piWU9aG8YMSxI2pYwX7Wud33p34sT6cYvHtl92UIN51SVk7jw==
+  dependencies:
+    "@semapps/semantic-data-provider" "0.4.0-alpha.29"
+    lodash.debounce "^4.0.8"
+    react-icons "^4.4.0"
+
 "@semapps/geo-components@0.4.0-alpha.29":
   version "0.4.0-alpha.29"
   resolved "https://registry.yarnpkg.com/@semapps/geo-components/-/geo-components-0.4.0-alpha.29.tgz#2547099c86f1f9b0757998935b24c90a7c4b2bc5"
@@ -1691,6 +1700,13 @@
     lodash.throttle "^4.1.1"
     react-leaflet "3.0.2"
     react-leaflet-markercluster "^3.0.0-rc1"
+
+"@semapps/input-components@0.4.0-alpha.29":
+  version "0.4.0-alpha.29"
+  resolved "https://registry.yarnpkg.com/@semapps/input-components/-/input-components-0.4.0-alpha.29.tgz#c1b04ff7f92165325f32cd2c7948116325ed5b2a"
+  integrity sha512-WU4fhWcT0xt/lFPVX3XNwwxVhKiledgGxUVVR7fRWLHS+kDBlJ/xr2gtXRD+fwe5asf+edpo2tqrvL3y6NgvGQ==
+  dependencies:
+    "@semapps/semantic-data-provider" "0.4.0-alpha.29"
 
 "@semapps/markdown-components@0.4.0-alpha.29":
   version "0.4.0-alpha.29"
@@ -10318,6 +10334,11 @@ react-final-form@^6.5.2:
   integrity sha512-FCs6GC0AMWJl2p6YX7kM+a0AvuSLAZUgbVNtRBskOs4g984t/It0qGtx51O+9vgqnqk6JyoxmIzxKMq+7ch/vg==
   dependencies:
     "@babel/runtime" "^7.12.1"
+
+react-icons@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.4.0.tgz#a13a8a20c254854e1ec9aecef28a95cdf24ef703"
+  integrity sha512-fSbvHeVYo/B5/L4VhB7sBA1i2tS8MkT0Hb9t2H1AVPkwGfVHLJCqyr2Py9dKMxsyM63Eng1GkdZfbWj+Fmv8Rg==
 
 react-is@^16.12.0, react-is@^16.13.1, react-is@^16.5.2, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   version "16.13.1"

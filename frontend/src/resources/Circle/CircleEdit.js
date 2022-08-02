@@ -1,10 +1,10 @@
 import React from 'react';
 import { EditBase, TextInput } from 'react-admin';
 import { MarkdownInput } from '@semapps/markdown-components';
+import { MultiLinesInput } from '@semapps/input-components';
 import { UsersInput, CircleInput } from '../../common/input';
 import CircleTitle from './CircleTitle';
 import EditSide from "../../layout/EditSide";
-import MultiLinesInput from "../../common/input/MultiLinesInput";
 
 export const CircleEdit = props => (
   <EditBase {...props}>

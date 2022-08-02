@@ -1,10 +1,10 @@
 import React from 'react';
 import { useListContext, useRecordContext, Link, Button } from 'react-admin';
-import { Box, List, ListItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
+import {Box, LinearProgress, List, ListItem, ListItemIcon, ListItemText, makeStyles} from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import ListIcon from '@material-ui/icons/List';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     padding: 0
   },
@@ -29,12 +29,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SmallList = ({ icon, primaryText, secondaryText, emptyText, inversePredicate }) => {
-  const { ids, data, basePath, total, perPage } = useListContext();
+const SmallList = ({ icon, primaryText, secondaryText, emptyText, target }) => {
+  const { ids, data, basePath, total, perPage, loaded } = useListContext();
   const record = useRecordContext();
   const classes = useStyles();
+  const searchParams = new URLSearchParams({ filter: JSON.stringify({ [target]: record.id }) });
 
-  const searchParams = new URLSearchParams({ filter: JSON.stringify({ [inversePredicate]: record.id }) });
+  if (!loaded) return <LinearProgress />
 
   return (
     <>
@@ -56,7 +57,7 @@ const SmallList = ({ icon, primaryText, secondaryText, emptyText, inversePredica
       </List>
       <Box display="flex" justifyContent="flex-end" pr={1}>
         <Link to={`${basePath}/create?${searchParams}`}><Button label="Ajouter"><AddIcon /></Button></Link>
-        {total === perPage &&
+        {total > perPage &&
           <Link to={`${basePath}?${searchParams}`}><Button label="Voir tous"><ListIcon/></Button></Link>
         }
       </Box>

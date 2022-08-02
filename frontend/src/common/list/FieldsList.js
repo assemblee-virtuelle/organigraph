@@ -43,13 +43,9 @@ const FieldsList = ({ basePath, className, children, record, resource, version, 
       {...sanitizeRestProps(rest)}
     >
       <Box display="flex" flexDirection="column" alignItems="flex-start">
-        {fields.map(field => {
-
+        {fields.map((field, i) => {
           return (
-            <div
-              key={field.props.source}
-              className={classes.field}
-            >
+            <div key={i} className={classes.field}>
               {field.props.addLabel ? (
                 <>
                   <FieldsListLabel>

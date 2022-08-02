@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Layout = ({ appBar, logout, theme, children }) => {
+const Layout = ({ appBar, logout, theme, title, children }) => {
   const classes = useStyles();
   const xs = useMediaQuery(theme.breakpoints.down('xs'));
   return (
@@ -31,7 +31,7 @@ const Layout = ({ appBar, logout, theme, children }) => {
           <Grid container>
             <Grid item xs={6}>
               <Box pt={1} pl={3}>
-                <Typography>Assemblée Virtuelle</Typography>
+                <Typography>{title}</Typography>
               </Box>
             </Grid>
             <Grid item xs={6}>

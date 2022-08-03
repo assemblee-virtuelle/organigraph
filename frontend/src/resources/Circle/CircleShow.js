@@ -36,12 +36,12 @@ const CircleShow = props => (
           <AvatarWithLabelField label="pair:label" image="pair:depictedBy" labelColor="secondary" />
         </GridList>
       </ReferenceManyField>
-      <ReferenceManyField label="Documents" reference="Document" target="pair:documents" perPage={4} sort={{ field: 'pair:label', order: 'ASC' }}>
+      <ReferenceManyField label="Actualités" reference="Document" target="pair:documents" perPage={4} sort={{ field: 'dc:created', order: 'ASC' }}>
         <SmallList
           icon={<DescriptionIcon />}
           primaryText={record => record['pair:label']}
-          secondaryText={record => <DateField record={record} source="created" />}
-          emptyText="Aucun document lié à ce cercle"
+          secondaryText={record => <DateField record={record} source="dc:created" />}
+          emptyText="Aucune actualité liée à ce cercle"
         />
       </ReferenceManyField>
       <ReferenceManyField label="Réunions" reference="Event" target="pair:concerns" perPage={4} sort={{ field: 'pair:endDate', order: 'DESC' }}>

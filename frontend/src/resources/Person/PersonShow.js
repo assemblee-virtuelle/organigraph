@@ -1,11 +1,13 @@
 import React from 'react';
-import { ChipField, ShowBase, SingleFieldList, TextField } from 'react-admin';
+import {ChipField, DateField, ReferenceManyField, ShowBase, SingleFieldList, TextField} from 'react-admin';
 import { ReferenceArrayField } from '@semapps/semantic-data-provider';
 import { MultiUrlField } from '@semapps/field-components';
 import PersonTitle from './PersonTitle';
 import ShowSide from "../../layout/ShowSide";
 import RoundImageField from "../../common/field/RoundImageField";
 import domainMapping from "../../config/domainMapping";
+import SmallList from "../../common/list/SmallList";
+import DescriptionIcon from "@material-ui/icons/Description";
 
 const PersonShow = props => (
   <ShowBase {...props}>
@@ -23,6 +25,14 @@ const PersonShow = props => (
           <ChipField color="secondary" source="pair:label" />
         </SingleFieldList>
       </ReferenceArrayField>
+      <ReferenceManyField label="Actualités postées" reference="Document" target="dc:creator" perPage={4} sort={{ field: 'dc:created', order: 'ASC' }}>
+        <SmallList
+          icon={<DescriptionIcon />}
+          primaryText={record => record['pair:label']}
+          secondaryText={record => <DateField record={record} source="dc:created" />}
+          emptyText="Aucune actualité postée par ce membre"
+        />
+      </ReferenceManyField>
     </ShowSide>
   </ShowBase>
 );

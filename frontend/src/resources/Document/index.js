@@ -2,7 +2,8 @@
 import DocumentList from './DocumentList';
 import DocumentShow from './DocumentShow';
 // import DocumentCreate from "./DocumentCreate";
-import DescriptionIcon from '@material-ui/icons/Description';
+// import DescriptionIcon from '@material-ui/icons/Description';
+import AnnouncementIcon from '@material-ui/icons/Announcement';
 
 export default {
   config: {
@@ -10,10 +11,10 @@ export default {
     show: DocumentShow,
     // create: DocumentCreate,
     // edit: DocumentEdit,
-    icon: DescriptionIcon,
+    icon: AnnouncementIcon,
     options: {
-      label: 'Documents',
-      panelSize: 6
+      label: 'Actualités',
+      panelSize: 5
     }
   },
   dataModel: {
@@ -24,15 +25,15 @@ export default {
   },
   translations: {
     fr: {
-      name: 'Document |||| Documents',
+      name: 'Actualité |||| Actualités',
       fields: {
         'pair:label': 'Titre',
         'pair:description': 'Description',
         'pair:comment': 'Courte description',
         'pair:hasType': 'Type',
         'pair:documents': 'Cercle',
-        'dc:created': 'Créé le',
-        'dc:creator': 'Créé par'
+        'dc:created': 'Posté le',
+        'dc:creator': 'Auteur'
       }
     }
   }

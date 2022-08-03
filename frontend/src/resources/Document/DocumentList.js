@@ -1,8 +1,10 @@
 import React, { useCallback } from 'react';
 import { ListBase, Datagrid, DateField, TextField, ShowButton, ListToolbar, SearchInput } from "react-admin";
-import { Box, makeStyles } from '@material-ui/core';
+import { Box, Grid, makeStyles } from '@material-ui/core';
+import { ReferenceField } from '@semapps/semantic-data-provider';
 import { useLocation } from 'react-router-dom';
 import { CircleInput } from "../../common/input";
+import TopPagination from "../../layout/TopPagination";
 
 const filters = [
   <SearchInput source="q" alwaysOn />,
@@ -29,16 +31,28 @@ const DocumentList = props => {
   }), [currentRecordId]);
 
   return (
-    <ListBase {...props}>
-      <Box p={2} pt={1} pb={0}>
-        <ListToolbar filters={filters} />
-      </Box>
-      <Box p={2} pt={1}>
-        <Datagrid rowClick="show" rowStyle={selectedRowStyle}>
-          <TextField source="pair:label" />
-          <DateField source="dc:created" headerClassName={classes.alignCenter} cellClassName={classes.alignCenter} />
-          <ShowButton cellClassName={classes.alignRight} />
-        </Datagrid>
+    <ListBase perPage={15} sort={{ field: 'dc:created', order: 'DESC' }} {...props}>
+      <Box pl={3} pr={3} pt={1} pb={0}>
+        <Grid container>
+          <Grid item xs={9}>
+            <ListToolbar filters={filters} />
+          </Grid>
+          <Grid item xs={3}>
+            <Box display="flex" justifyContent="flex-end">
+              <TopPagination />
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <Datagrid rowClick="show" rowStyle={selectedRowStyle}>
+              <TextField source="pair:label" />
+              <ReferenceField reference="Person" source="dc:creator" link={false}>
+                <TextField source="pair:firstName" />
+              </ReferenceField>
+              <DateField source="dc:created" headerClassName={classes.alignCenter} cellClassName={classes.alignCenter} />
+              {/*<ShowButton cellClassName={classes.alignRight} />*/}
+            </Datagrid>
+          </Grid>
+        </Grid>
       </Box>
     </ListBase>
   );

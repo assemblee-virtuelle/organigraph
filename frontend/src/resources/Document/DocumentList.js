@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { ListBase, Datagrid, DateField, TextField, ShowButton, ListToolbar, SearchInput } from "react-admin";
+import { ListBase, Datagrid, DateField, TextField, ListToolbar, SearchInput } from "react-admin";
 import { Box, Grid, makeStyles } from '@material-ui/core';
 import { ReferenceField } from '@semapps/semantic-data-provider';
 import { useLocation } from 'react-router-dom';

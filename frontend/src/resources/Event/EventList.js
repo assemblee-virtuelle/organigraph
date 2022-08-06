@@ -11,7 +11,7 @@ const filters = [
 ];
 
 const EventList = props => (
-  <ListBase {...props}>
+  <ListBase perPage={1000} {...props}>
     <Box p={3} pt={1} pb={0}>
       <ListToolbar filters={filters} />
     </Box>

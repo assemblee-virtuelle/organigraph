@@ -8,13 +8,19 @@ import RoundImageField from "../../common/field/RoundImageField";
 import domainMapping from "../../config/domainMapping";
 import SmallList from "../../common/list/SmallList";
 import DescriptionIcon from "@material-ui/icons/Description";
+import ViewSourceButton from "../../common/buttons/ViewSourceButton";
 
 const PersonShow = props => (
   <ShowBase {...props}>
-    <ShowSide title={<PersonTitle />}>
+    <ShowSide title={<PersonTitle />} actions={[<ViewSourceButton source="pair:webPage" />]}>
       <RoundImageField source="pair:depictedBy" title="pair:label" addLabel={false} />
       <TextField source="pair:description" fullWidth />
       <MultiUrlField source="pair:homePage" domainMapping={domainMapping} />
+      <ReferenceArrayField reference="Theme" source="pair:hasInterest">
+        <SingleFieldList linkType={false}>
+          <ChipField color="secondary" source="pair:label" />
+        </SingleFieldList>
+      </ReferenceArrayField>
       <ReferenceArrayField reference="Circle" source="og:leads">
         <SingleFieldList linkType="show">
           <ChipField color="secondary" source="pair:label" />

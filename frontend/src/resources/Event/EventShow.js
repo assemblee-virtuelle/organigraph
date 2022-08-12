@@ -1,15 +1,16 @@
 import React from 'react';
-import {ShowBase, DateField, ChipField, ReferenceManyField} from 'react-admin';
+import { ShowBase, DateField, ChipField, ReferenceManyField } from 'react-admin';
 import { ReferenceField } from "@semapps/semantic-data-provider";
 import { AvatarWithLabelField } from "@semapps/field-components";
 import EventTitle from './EventTitle';
 import ShowSide from "../../layout/ShowSide";
 import MarkdownField from "../../common/field/MarkdownField";
 import GridList from "../../common/list/GridList";
+import ViewSourceButton from "../../common/buttons/ViewSourceButton";
 
 const EventShow = props => (
   <ShowBase  {...props}>
-    <ShowSide title={<EventTitle />}>
+    <ShowSide title={<EventTitle />} actions={[<ViewSourceButton source="pair:webPage" />]}>
       <DateField source="pair:startDate" showTime />
       <DateField source="pair:endDate" showTime />
       <MarkdownField source="pair:description" />

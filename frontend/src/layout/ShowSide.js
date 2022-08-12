@@ -40,6 +40,7 @@ const ShowSide = props => {
         <Grid item xs={3}>
           <Box pt={2} pr={2} display="flex" justifyContent="flex-end">
             {hasEdit && <EditButton basePath={basePath} record={record} />}
+            {actions && actions.map((action, i) => React.cloneElement(action, { key: i }))}
           </Box>
         </Grid>
       </Grid>

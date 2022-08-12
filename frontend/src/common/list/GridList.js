@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useListContext, linkToRecord, Link, Button, useRecordContext } from 'react-admin';
+import { useListContext, linkToRecord, Link, Button, useRecordContext, RecordContextProvider } from 'react-admin';
 import {Box, Grid, LinearProgress, makeStyles, Typography} from '@material-ui/core';
 import ListIcon from "@material-ui/icons/List";
 
@@ -36,21 +36,23 @@ const GridList = ({ children, linkType, spacing, target, emptyText, ...rest }) =
       <Grid container spacing={spacing}>
         {ids.map(id => (
           <Grid item key={id} {...rest}>
-            {linkType ? (
-              <Link to={linkToRecord(basePath, id, linkType) + '?' + searchParams} onClick={stopPropagation}>
-                {React.cloneElement(React.Children.only(children), {
+            <RecordContextProvider value={data[id]} key={id}>
+              {linkType ? (
+                <Link to={linkToRecord(basePath, id, linkType) + '?' + searchParams} onClick={stopPropagation}>
+                  {React.cloneElement(React.Children.only(children), {
+                    record: data[id],
+                    basePath,
+                    // Workaround to force ChipField to be clickable
+                    onClick: handleClick
+                  })}
+                </Link>
+              ) : (
+                React.cloneElement(React.Children.only(children), {
                   record: data[id],
-                  basePath,
-                  // Workaround to force ChipField to be clickable
-                  onClick: handleClick
-                })}
-              </Link>
-            ) : (
-              React.cloneElement(React.Children.only(children), {
-                record: data[id],
-                basePath
-              })
-            )}
+                  basePath
+                })
+              )}
+            </RecordContextProvider>
           </Grid>
         ))}
         {ids.length === 0 &&

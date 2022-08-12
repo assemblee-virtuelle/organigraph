@@ -35,7 +35,7 @@ const InternalImage = ({ src, alt, ...rest }) => {
   if (src.startsWith('file-guid:')) {
     src = "https://grandjardin.jardiniersdunous.org/file/file/download?guid=" + src.substring(10)
   }
-  return <img src={src} alt={alt} {...rest} />;
+  return <img src={src} alt={alt} style={{ maxWidth: '100%' }} {...rest} />;
 };
 
 const MarkdownField = (props) => {

@@ -34,12 +34,12 @@ const CircleShow = props => {
             <AvatarWithLabelField label="pair:label" image="pair:depictedBy" labelColor="secondary" />
           </GridList>
         </ReferenceArrayField>
-        <ReferenceManyField label="Membres" reference="Person" target="pair:affiliatedBy" perPage={4} sort={{ field: 'pair:label', order: 'ASC' }}>
+        <ReferenceManyField label="Membres" reference="Person" target="pair:affiliatedBy" perPage={4} sort={{ field: 'pair:label', order: 'ASC' }} filter={{ _predicates: ['pair:label', 'pair:depictedBy'] }}>
           <GridList xs={3} linkType="show" emptyText="Aucun membre dans ce cercle">
             <AvatarWithLabelField label="pair:label" image="pair:depictedBy" labelColor="secondary" />
           </GridList>
         </ReferenceManyField>
-        <ReferenceManyField label="Dernières actualités" reference="Document" target="pair:documents" perPage={4} sort={{ field: 'dc:created', order: 'DESC' }}>
+        <ReferenceManyField label="Dernières actualités" reference="Document" target="pair:documents" perPage={4} sort={{ field: 'dc:created', order: 'DESC' }} filter={{ _predicates: ['pair:label', 'dc:created'] }}>
           <SmallList
             icon={<DescriptionIcon />}
             primaryText={record => record['pair:label']}
@@ -47,7 +47,7 @@ const CircleShow = props => {
             emptyText="Aucune actualité liée à ce cercle"
           />
         </ReferenceManyField>
-        <ReferenceManyField label="Prochaines réunions" reference="Event" target="pair:concerns" perPage={4} sort={{ field: 'pair:endDate', order: 'ASC' }} filter={{ sparqlWhere: futureEventSparql }}>
+        <ReferenceManyField label="Prochaines réunions" reference="Event" target="pair:concerns" perPage={4} sort={{ field: 'pair:endDate', order: 'ASC' }} filter={{ sparqlWhere: futureEventSparql, _predicates: ['pair:label', 'pair:startDate'] }}>
           <SmallList
             icon={<EventIcon />}
             primaryText={record => record['pair:label']}

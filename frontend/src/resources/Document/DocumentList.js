@@ -5,6 +5,7 @@ import { ReferenceField } from '@semapps/semantic-data-provider';
 import { useLocation } from 'react-router-dom';
 import { CircleInput } from "../../common/input";
 import TopPagination from "../../layout/TopPagination";
+import ListLoader from "../../common/list/ListLoader";
 
 const filters = [
   <SearchInput source="q" alwaysOn />,
@@ -43,14 +44,16 @@ const DocumentList = props => {
             </Box>
           </Grid>
           <Grid item xs={12}>
-            <Datagrid rowClick="show" rowStyle={selectedRowStyle}>
-              <TextField source="pair:label" />
-              <ReferenceField reference="Person" source="dc:creator" link={false}>
-                <TextField source="pair:firstName" />
-              </ReferenceField>
-              <DateField source="dc:created" headerClassName={classes.alignCenter} cellClassName={classes.alignCenter} />
-              {/*<ShowButton cellClassName={classes.alignRight} />*/}
-            </Datagrid>
+            <Box position="relative">
+              <Datagrid rowClick="show" rowStyle={selectedRowStyle}>
+                <TextField source="pair:label" />
+                <ReferenceField reference="Person" source="dc:creator" link={false}>
+                  <TextField source="pair:firstName" />
+                </ReferenceField>
+                <DateField source="dc:created" headerClassName={classes.alignCenter} cellClassName={classes.alignCenter} />
+              </Datagrid>
+              <ListLoader />
+            </Box>
           </Grid>
         </Grid>
       </Box>

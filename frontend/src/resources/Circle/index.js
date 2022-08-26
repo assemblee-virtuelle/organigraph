@@ -18,6 +18,9 @@ export default {
   },
   dataModel: {
     types: ['og:Circle'],
+    list: {
+      blankNodes: []
+    },
     fieldsMapping: {
       title: 'pair:label'
     }

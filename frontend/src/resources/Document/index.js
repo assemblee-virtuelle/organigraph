@@ -32,7 +32,7 @@ export default {
         'pair:comment': 'Courte description',
         'pair:hasType': 'Type',
         'pair:documents': 'Cercle',
-        'dc:created': 'Posté le',
+        'dc:created': 'Posté',
         'dc:creator': 'Auteur'
       }
     }

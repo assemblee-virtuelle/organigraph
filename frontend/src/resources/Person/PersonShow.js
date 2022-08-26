@@ -31,7 +31,7 @@ const PersonShow = props => (
           <ChipField color="secondary" source="pair:label" />
         </SingleFieldList>
       </ReferenceArrayField>
-      <ReferenceManyField label="Actualités postées" reference="Document" target="dc:creator" perPage={4} sort={{ field: 'dc:created', order: 'ASC' }}>
+      <ReferenceManyField label="Actualités postées" reference="Document" target="dc:creator" perPage={4} filter={{ _predicates: ['pair:label', 'dc:created'] }} sort={{ field: 'dc:created', order: 'DESC' }}>
         <SmallList
           icon={<DescriptionIcon />}
           primaryText={record => record['pair:label']}

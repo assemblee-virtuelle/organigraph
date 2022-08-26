@@ -16,6 +16,9 @@ export default {
   },
   dataModel: {
     types: ['pair:Person'],
+    list: {
+      blankNodes: []
+    },
     fieldsMapping: {
       title: 'pair:label'
     }

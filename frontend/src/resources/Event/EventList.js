@@ -4,6 +4,7 @@ import { CalendarList } from '@semapps/date-components';
 import frLocale from '@fullcalendar/core/locales/fr';
 import { Box } from '@material-ui/core';
 import { CircleInput } from "../../common/input";
+import ListLoader from "../../common/list/ListLoader";
 
 const filters = [
   <SearchInput source="q" alwaysOn />,
@@ -15,7 +16,7 @@ const EventList = props => (
     <Box p={3} pt={1} pb={0}>
       <ListToolbar filters={filters} />
     </Box>
-    <Box p={3}>
+    <Box p={3} position="relative">
       <CalendarList
         locale={frLocale}
         label="pair:label"
@@ -23,6 +24,7 @@ const EventList = props => (
         endDate="pair:endDate"
         linkType="show"
       />
+      <ListLoader />
     </Box>
   </ListBase>
 );

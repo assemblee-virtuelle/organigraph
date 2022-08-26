@@ -17,7 +17,7 @@ const EventShow = props => (
       <ReferenceField reference="Circle" source="pair:concerns" linkType="show">
         <ChipField color="secondary" source="pair:label" />
       </ReferenceField>
-      <ReferenceManyField label="Participants" reference="Person" target="pair:involvedIn" sort={{ field: 'pair:label', order: 'ASC' }}>
+      <ReferenceManyField label="Participants" reference="Person" target="pair:involvedIn" sort={{ field: 'pair:label', order: 'ASC' }} filter={{ _predicates: ['pair:label', 'pair:depictedBy'] }}>
         <GridList xs={3} linkType="show" emptyText="Aucun participant">
           <AvatarWithLabelField label="pair:label" image="pair:depictedBy" />
         </GridList>

@@ -1708,6 +1708,11 @@
   dependencies:
     "@semapps/semantic-data-provider" "0.4.0-alpha.30"
 
+"@semapps/list-components@0.4.0-alpha.30":
+  version "0.4.0-alpha.30"
+  resolved "https://registry.yarnpkg.com/@semapps/list-components/-/list-components-0.4.0-alpha.30.tgz#0dbbd12f6d45e4f2339eb17c77cd2fa627e617f4"
+  integrity sha512-ibEakmjvmw+EcZBvwXAkSMw6xhufgrUvicXA73txSnDwA+c8TzFhHdiBgpxpwxlZ1x8wjoWXg9Fn09rDCa/qpw==
+
 "@semapps/markdown-components@0.4.0-alpha.30":
   version "0.4.0-alpha.30"
   resolved "https://registry.yarnpkg.com/@semapps/markdown-components/-/markdown-components-0.4.0-alpha.30.tgz#9c7c3d774dd90baa3360a007b5650eebb9613ec8"

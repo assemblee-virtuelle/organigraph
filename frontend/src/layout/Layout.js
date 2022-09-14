@@ -1,7 +1,7 @@
 import React from 'react';
 import { Notification } from 'react-admin';
 import { Grid, Box, useMediaQuery, ThemeProvider, makeStyles, Typography } from '@material-ui/core';
-import { UserMenu, LogoutButton } from '@semapps/auth-provider';
+// import { UserMenu, LogoutButton } from '@semapps/auth-provider';
 import AppBar from './AppBar';
 import ScrollToTop from './ScrollToTop';
 
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Layout = ({ appBar, logout, theme, children }) => {
+const Layout = ({ appBar, logout, theme, title, children }) => {
   const classes = useStyles();
   const xs = useMediaQuery(theme.breakpoints.down('xs'));
   return (
@@ -31,12 +31,12 @@ const Layout = ({ appBar, logout, theme, children }) => {
           <Grid container>
             <Grid item xs={6}>
               <Box pt={1} pl={3}>
-                <Typography>Assemblée Virtuelle</Typography>
+                <Typography>{title}</Typography>
               </Box>
             </Grid>
             <Grid item xs={6}>
               <Box pr={1}>
-                <UserMenu logout={<LogoutButton />} classes={{ user: classes.userMenu }} />
+                {/*<UserMenu logout={<LogoutButton />} classes={{ user: classes.userMenu }} />*/}
               </Box>
             </Grid>
           </Grid>

@@ -1,0 +1,10 @@
+.env.local
+.env.*.local
+/jwt/*.key
+/jwt/*.key.pub
+/uploads
+/actors/*.key
+/actors/*.key.pub
+/importers
+.yalc
+yalk.lock

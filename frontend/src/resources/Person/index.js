@@ -1,4 +1,4 @@
-import PersonEdit from './PersonEdit';
+// import PersonEdit from './PersonEdit';
 import PersonList from './PersonList';
 import PersonShow from './PersonShow';
 import PersonIcon from '@material-ui/icons/Person';
@@ -7,7 +7,7 @@ export default {
   config: {
     list: PersonList,
     show: PersonShow,
-    edit: PersonEdit,
+    // edit: PersonEdit,
     icon: PersonIcon,
     options: {
       label: 'Trombinoscope',
@@ -16,9 +16,12 @@ export default {
   },
   dataModel: {
     types: ['pair:Person'],
-    containerUri: process.env.REACT_APP_MIDDLEWARE_URL + 'users',
-    // dereference: ['pair:hasLocation/pair:hasPostalAddress'],
-    slugField: 'pair:label'
+    list: {
+      blankNodes: []
+    },
+    fieldsMapping: {
+      title: 'pair:label'
+    }
   },
   translations: {
     fr: {
@@ -26,14 +29,17 @@ export default {
       fields: {
         'pair:firstName': 'Prénom',
         'pair:lastName': 'Nom de famille',
+        'pair:homePage': 'Site(s) web',
         'pair:comment': 'En deux mots',
+        'pair:description': 'Description',
         'og:leads': 'Référent',
-        image: 'Photo',
+        'pair:depictedBy': 'Photo',
         'pair:involvedIn': 'Contributeur',
         'pair:affiliatedBy': 'Membre de',
         'pair:offers': 'A pour compétences',
         'pair:hasTopic': 'A pour intérêt',
-        'pair:hasLocation': 'Adresse'
+        'pair:hasLocation': 'Adresse',
+        'pair:hasInterest': "Domaines d'intérêts"
       }
     }
   }

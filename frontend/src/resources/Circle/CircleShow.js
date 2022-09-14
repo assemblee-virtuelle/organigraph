@@ -1,61 +1,63 @@
 import React from 'react';
-import { ShowBase, TextField, ChipField, DateField, SingleFieldList } from 'react-admin';
-import { AvatarField } from '@semapps/archipelago-layout';
+import { ShowBase, TextField, ChipField, DateField, SingleFieldList, ReferenceManyField } from 'react-admin';
 import { ReferenceArrayField, ReferenceField } from '@semapps/semantic-data-provider';
+import { MultiUrlField, AvatarWithLabelField } from '@semapps/field-components';
 import MarkdownField from "../../common/field/MarkdownField";
 import ShowSide from "../../layout/ShowSide";
 import CircleTitle from "./CircleTitle";
 import DescriptionIcon from '@material-ui/icons/Description';
 import EventIcon from '@material-ui/icons/Event';
 import SmallList from "../../common/list/SmallList";
-import MultiUrlField from "../../common/field/MultiUrlField";
 import GridList from "../../common/list/GridList";
+import domainMapping from "../../config/domainMapping";
+import useFutureEventSparql from "../../hooks/useFutureEventSparql";
 
-const CircleShow = props => (
-  <ShowBase {...props}>
-    <ShowSide title={<CircleTitle />}>
-      <MarkdownField source="og:purpose" />
-      <MarkdownField source="og:accountabilities" />
-      <TextField source="og:domain" />
-      <MultiUrlField source="pair:homePage" />
-      <ReferenceField reference="Circle" source="pair:partOf" linkType="show">
-        <ChipField color="secondary" source="pair:label" />
-      </ReferenceField>
-      <ReferenceArrayField reference="Circle" source="pair:hasPart">
-        <SingleFieldList linkType="show">
+const CircleShow = props => {
+  const futureEventSparql = useFutureEventSparql();
+  return (
+    <ShowBase {...props}>
+      <ShowSide title={<CircleTitle />}>
+        <MarkdownField source="og:purpose" />
+        <MarkdownField source="og:accountabilities" />
+        <TextField source="og:domain" />
+        <MultiUrlField source="pair:homePage" domainMapping={domainMapping} />
+        <ReferenceField reference="Circle" source="pair:partOf" linkType="show">
           <ChipField color="secondary" source="pair:label" />
-        </SingleFieldList>
-      </ReferenceArrayField>
-      <ReferenceArrayField reference="Person" source="og:leadBy" perPage={4} inversePredicate="og:leads">
-        <GridList xs={3} linkType="show">
-          <AvatarField label="pair:firstName" image="image" />
-        </GridList>
-      </ReferenceArrayField>
-      <ReferenceArrayField reference="Person" source="pair:involves" perPage={4} inversePredicate="pair:involvedIn" filter={{ type: 'pair:Person' }}>
-        <GridList xs={3} linkType="show">
-          <AvatarField label="pair:firstName" image="image" />
-        </GridList>
-      </ReferenceArrayField>
-      <ReferenceArrayField reference="Document" source="pair:documentedBy" perPage={4} alwaysShow>
-        <SmallList
-          icon={<DescriptionIcon />}
-          primaryText={record => record['pair:label']}
-          secondaryText={record => <DateField record={record} source="created" />}
-          inversePredicate="pair:documents"
-          emptyText="Aucun document lié à ce cercle"
-        />
-      </ReferenceArrayField>
-      <ReferenceArrayField reference="Event" source="pair:concernedBy" perPage={4} alwaysShow>
-        <SmallList
-          icon={<EventIcon />}
-          primaryText={record => record['pair:label']}
-          secondaryText={record => <DateField record={record} source="pair:startDate" showTime />}
-          inversePredicate="pair:concerns"
-          emptyText="Aucune réunion prévue pour le moment"
-        />
-      </ReferenceArrayField>
-    </ShowSide>
-  </ShowBase>
-);
+        </ReferenceField>
+        <ReferenceArrayField reference="Circle" source="pair:hasPart">
+          <SingleFieldList linkType="show">
+            <ChipField color="secondary" source="pair:label" />
+          </SingleFieldList>
+        </ReferenceArrayField>
+        <ReferenceArrayField reference="Person" source="og:leadBy" perPage={4} inversePredicate="og:leads">
+          <GridList xs={3} linkType="show">
+            <AvatarWithLabelField label="pair:label" image="pair:depictedBy" labelColor="secondary" />
+          </GridList>
+        </ReferenceArrayField>
+        <ReferenceManyField label="Membres" reference="Person" target="pair:affiliatedBy" perPage={4} sort={{ field: 'pair:label', order: 'ASC' }} filter={{ _predicates: ['pair:label', 'pair:depictedBy'] }}>
+          <GridList xs={3} linkType="show" emptyText="Aucun membre dans ce cercle">
+            <AvatarWithLabelField label="pair:label" image="pair:depictedBy" labelColor="secondary" />
+          </GridList>
+        </ReferenceManyField>
+        <ReferenceManyField label="Dernières actualités" reference="Document" target="pair:documents" perPage={4} sort={{ field: 'dc:created', order: 'DESC' }} filter={{ _predicates: ['pair:label', 'dc:created'] }}>
+          <SmallList
+            icon={<DescriptionIcon />}
+            primaryText={record => record['pair:label']}
+            secondaryText={record => <DateField record={record} source="dc:created" />}
+            emptyText="Aucune actualité liée à ce cercle"
+          />
+        </ReferenceManyField>
+        <ReferenceManyField label="Prochaines réunions" reference="Event" target="pair:concerns" perPage={4} sort={{ field: 'pair:endDate', order: 'ASC' }} filter={{ sparqlWhere: futureEventSparql, _predicates: ['pair:label', 'pair:startDate'] }}>
+          <SmallList
+            icon={<EventIcon />}
+            primaryText={record => record['pair:label']}
+            secondaryText={record => <DateField record={record} source="pair:startDate" />}
+            emptyText="Aucune réunion prévue pour le moment"
+          />
+        </ReferenceManyField>
+      </ShowSide>
+    </ShowBase>
+  );
+}
 
 export default CircleShow;

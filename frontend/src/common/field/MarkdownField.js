@@ -1,6 +1,8 @@
 import React from 'react';
+import urlJoin from 'url-join';
 import { Typography, makeStyles } from '@material-ui/core';
 import { MarkdownField as SemAppsMarkdownField } from '@semapps/markdown-components';
+import { Link, linkToRecord } from "react-admin";
 
 const useStyles = makeStyles((theme) => ({
   p: {
@@ -20,6 +22,22 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const InternalLink = ({ title, href, children, ...rest }) => {
+  if (title && title.startsWith('/u/')) {
+    const splitTitle = title.split('/');
+    return <Link to={linkToRecord('/Person', urlJoin(process.env.REACT_APP_MIDDLEWARE_URL, 'users', splitTitle[2]) , 'show')} {...rest}>{children}</Link>;
+  } else {
+    return <a title={title} href={href} target="_blank" rel="noreferrer noopener" {...rest}>{children}</a>
+  }
+};
+
+const InternalImage = ({ src, alt, ...rest }) => {
+  if (src.startsWith('file-guid:')) {
+    src = "https://grandjardin.jardiniersdunous.org/file/file/download?guid=" + src.substring(10)
+  }
+  return <img src={src} alt={alt} style={{ maxWidth: '100%' }} {...rest} />;
+};
+
 const MarkdownField = (props) => {
   const classes = useStyles();
   return (
@@ -35,6 +53,8 @@ const MarkdownField = (props) => {
             <Typography variant="body2" {...props} className={classes.p} />
           </li>
         ),
+        a: InternalLink,
+        img: InternalImage
       }}
       className={classes.root}
       {...props}

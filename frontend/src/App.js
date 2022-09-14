@@ -1,6 +1,6 @@
 import React from 'react';
 import { Admin } from 'react-admin';
-import { LoginPage, LogoutButton } from '@semapps/auth-provider';
+import { SsoLoginPage, LogoutButton } from '@semapps/auth-provider';
 import { createBrowserHistory as createHistory } from 'history';
 
 import i18nProvider from './config/i18nProvider';
@@ -17,13 +17,13 @@ const history = createHistory();
 const App = () => (
   <Admin
     history={history}
-    title="OrganiGraph"
+    title={process.env.REACT_APP_INSTANCE_NAME}
     authProvider={authProvider}
     dataProvider={dataProvider}
     i18nProvider={i18nProvider}
     layout={Layout}
     theme={theme}
-    loginPage={LoginPage}
+    loginPage={SsoLoginPage}
     logoutButton={LogoutButton}
   >
     {Object.entries(resources).map(([key, resource]) => (

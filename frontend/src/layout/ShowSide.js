@@ -19,6 +19,7 @@ const ShowSide = props => {
     basePath,
     // defaultTitle,
     // hasList,
+    hasEdit,
     record,
     resource,
     version,
@@ -38,7 +39,8 @@ const ShowSide = props => {
         </Grid>
         <Grid item xs={3}>
           <Box pt={2} pr={2} display="flex" justifyContent="flex-end">
-            <EditButton basePath={basePath} record={record} />
+            {hasEdit && <EditButton basePath={basePath} record={record} />}
+            {actions && actions.map((action, i) => React.cloneElement(action, { key: i }))}
           </Box>
         </Grid>
       </Grid>

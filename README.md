@@ -7,6 +7,8 @@ allows to visualize the structure of the organization (in the form of a hierarch
 to see its sub-circles, the people involved, the meeting schedule, documents, news, etc. A simple tool that allows 
 anyone to see what is going on and potentially get involved.
 
+![Capture d’écran de 2022-09-14 19-03-08](https://user-images.githubusercontent.com/17931931/190217662-db3e3690-437c-4a15-9e41-7c1c06bbadc9.png)
+
 ## Running instances
 
 - [Jardiniers du Nous](https://cercles.jardiniersdunous.org) *(read-only mode)*

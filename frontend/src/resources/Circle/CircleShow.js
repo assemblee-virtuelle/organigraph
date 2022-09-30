@@ -47,7 +47,7 @@ const CircleShow = props => {
             emptyText="Aucune actualité liée à ce cercle"
           />
         </ReferenceManyField>
-        <ReferenceManyField label="Prochaines réunions" reference="Event" target="pair:concerns" perPage={4} sort={{ field: 'pair:endDate', order: 'DESC' }} filter={{ sparqlWhere: futureEventSparql, _predicates: ['pair:label', 'pair:startDate'] }}>
+        <ReferenceManyField label="Prochaines réunions" reference="Event" target="pair:concerns" perPage={4} sort={{ field: 'pair:endDate', order: 'ASC' }} filter={{ sparqlWhere: futureEventSparql, _predicates: ['pair:label', 'pair:startDate', 'pair:endDate'] }}>
           <SmallList
             icon={<EventIcon />}
             primaryText={record => record['pair:label']}

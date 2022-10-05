@@ -1,6 +1,6 @@
 import React from 'react';
 import { ShowBase, DateField, ChipField, ReferenceManyField } from 'react-admin';
-import { ReferenceField } from "@semapps/semantic-data-provider";
+import { ReferenceField } from "@semapps/field-components";
 import { AvatarWithLabelField } from "@semapps/field-components";
 import EventTitle from './EventTitle';
 import ShowSide from "../../layout/ShowSide";

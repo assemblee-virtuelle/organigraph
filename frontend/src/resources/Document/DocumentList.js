@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { ListBase, Datagrid, DateField, TextField, ListToolbar, SearchInput } from "react-admin";
 import { Box, Grid, makeStyles } from '@material-ui/core';
-import { ReferenceField } from '@semapps/semantic-data-provider';
+import { ReferenceField } from '@semapps/field-components';
 import { useLocation } from 'react-router-dom';
 import { CircleInput } from "../../common/input";
 import TopPagination from "../../layout/TopPagination";

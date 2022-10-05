@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Grid } from '@material-ui/core';
 import { ListBase, ListToolbar, SearchInput } from "react-admin";
 import { GridList } from '@semapps/list-components';
-import { AvatarField } from '@semapps/archipelago-layout';
+import { AvatarWithLabelField } from '@semapps/field-components';
 import { CircleInput } from "../../common/input";
 import TopPagination from "../../layout/TopPagination";
 import ListLoader from "../../common/list/ListLoader";
@@ -27,7 +27,7 @@ const PersonList = props => (
         <Grid item xs={12}>
           <Box position="relative">
             <GridList xs={2} linkType="show">
-              <AvatarField label="pair:label" image="pair:depictedBy" />
+              <AvatarWithLabelField label="pair:label" image="pair:depictedBy" />
             </GridList>
             <ListLoader />
           </Box>

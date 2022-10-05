@@ -1,7 +1,6 @@
 import React from 'react';
 import {ChipField, DateField, ReferenceManyField, ShowBase, SingleFieldList, TextField} from 'react-admin';
-import { ReferenceArrayField } from '@semapps/semantic-data-provider';
-import { MultiUrlField } from '@semapps/field-components';
+import { MultiUrlField, ReferenceArrayField } from '@semapps/field-components';
 import PersonTitle from './PersonTitle';
 import ShowSide from "../../layout/ShowSide";
 import RoundImageField from "../../common/field/RoundImageField";

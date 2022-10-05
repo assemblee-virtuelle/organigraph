@@ -1,6 +1,6 @@
 import React from 'react';
 import { EditBase, ImageInput, TextInput } from 'react-admin';
-import { ImageField } from '@semapps/semantic-data-provider';
+import { ImageField } from '@semapps/field-components';
 import EditSide from "../../layout/EditSide";
 import { CirclesInput } from "../../common/input";
 import PersonTitle from "./PersonTitle";

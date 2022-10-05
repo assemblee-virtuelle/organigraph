@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReferenceInput, ReferenceArrayInput } from '@semapps/semantic-data-provider';
+import { ReferenceInput, ReferenceArrayInput } from '@semapps/input-components';
 import { AutocompleteArrayInput, SelectInput } from 'react-admin';
 
 export const DocumentsInput = (props) => (

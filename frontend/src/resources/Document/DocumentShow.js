@@ -1,11 +1,10 @@
 import React from 'react';
 import { ShowBase, SingleFieldList, ChipField, DateField } from 'react-admin';
 import { Grid } from '@material-ui/core';
-import { ReferenceArrayField, ReferenceField } from '@semapps/semantic-data-provider';
+import { ReferenceArrayField, ReferenceField, AvatarWithLabelField } from '@semapps/field-components';
 import DocumentTitle from './DocumentTitle';
 import ShowSide from "../../layout/ShowSide";
 import MarkdownField from "../../common/field/MarkdownField";
-import { AvatarWithLabelField } from "@semapps/field-components";
 import ViewSourceButton from "../../common/buttons/ViewSourceButton";
 
 const DocumentShow = props => (

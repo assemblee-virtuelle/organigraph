@@ -8,7 +8,7 @@ WORKDIR /organigraph
 RUN node -v
 RUN npm -v
 
-RUN apk add --update --no-cache autoconf bash libtool automake python alpine-sdk openssh-keygen yarn nano
+RUN apk add --update --no-cache autoconf bash libtool automake python alpine-sdk openssh-keygen yarn nano cmake
 
 RUN yarn global add pm2
 

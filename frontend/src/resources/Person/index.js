@@ -10,7 +10,7 @@ export default {
     // edit: PersonEdit,
     icon: PersonIcon,
     options: {
-      label: 'Trombinoscope',
+      label: 'Jardiniers',
       panelSize: 5
     }
   },
@@ -25,7 +25,7 @@ export default {
   },
   translations: {
     fr: {
-      name: 'Personne |||| Personnes',
+      name: 'Jardinier |||| Jardiniers',
       fields: {
         'pair:firstName': 'Prénom',
         'pair:lastName': 'Nom de famille',

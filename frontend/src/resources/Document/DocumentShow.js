@@ -14,7 +14,7 @@ const DocumentShow = props => (
       <DateField source="dc:created" showTime />
       <ReferenceField reference="Person" source="dc:creator" link="show">
         <Grid container>
-          <Grid item xs={2}>
+          <Grid item xs={5} sm={2}>
             <AvatarWithLabelField label="pair:label" image="pair:depictedBy" labelColor="secondary" />
           </Grid>
         </Grid>

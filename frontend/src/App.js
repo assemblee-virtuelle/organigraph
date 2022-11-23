@@ -1,5 +1,6 @@
 import React from 'react';
-import { Admin } from 'react-admin';
+import { Admin, Resource } from 'react-admin';
+import { useMediaQuery } from "@material-ui/core";
 import { SsoLoginPage, LogoutButton } from '@semapps/auth-provider';
 import { createBrowserHistory as createHistory } from 'history';
 
@@ -14,22 +15,27 @@ import Layout from './layout/Layout';
 
 const history = createHistory();
 
-const App = () => (
-  <Admin
-    history={history}
-    title={process.env.REACT_APP_INSTANCE_NAME}
-    authProvider={authProvider}
-    dataProvider={dataProvider}
-    i18nProvider={i18nProvider}
-    layout={Layout}
-    theme={theme}
-    loginPage={SsoLoginPage}
-    logoutButton={LogoutButton}
-  >
-    {Object.entries(resources).map(([key, resource]) => (
-      <SplitViewResource key={key} name={key} {...resource.config} />
-    ))}
-  </Admin>
-);
+const App = () => {
+  const xs = useMediaQuery(theme.breakpoints.down('xs'), { noSsr: true });
+  return (
+    <Admin
+      history={history}
+      title={process.env.REACT_APP_INSTANCE_NAME}
+      authProvider={authProvider}
+      dataProvider={dataProvider}
+      i18nProvider={i18nProvider}
+      layout={Layout}
+      theme={theme}
+      loginPage={SsoLoginPage}
+      logoutButton={LogoutButton}
+    >
+      {Object.entries(resources).map(([key, resource]) =>
+        xs
+          ? <Resource key={key} name={key} {...resource.config} />
+          : <SplitViewResource key={key} name={key} {...resource.config} />
+      )}
+    </Admin>
+  );
+}
 
 export default App;

@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 
 const Layout = ({ appBar, logout, theme, title, children }) => {
   const classes = useStyles();
-  const xs = useMediaQuery(theme.breakpoints.down('xs'));
+  const xs = useMediaQuery(theme.breakpoints.down('xs'), { noSsr: true });
   return (
     <ThemeProvider theme={theme}>
       <ScrollToTop />
@@ -44,6 +44,7 @@ const Layout = ({ appBar, logout, theme, title, children }) => {
       )}
       {React.cloneElement(appBar, { logout })}
       {children}
+      {xs && <Box height={56} />}
       <Notification />
     </ThemeProvider>
   );

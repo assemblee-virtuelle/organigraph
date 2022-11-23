@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
-import { ListBase, Datagrid, DateField, TextField, ListToolbar, SearchInput } from "react-admin";
-import { Box, Grid, makeStyles } from '@material-ui/core';
+import { Datagrid, DateField, TextField, SearchInput, SimpleList } from "react-admin";
+import { makeStyles, useMediaQuery } from '@material-ui/core';
 import { ReferenceField } from '@semapps/field-components';
 import { useLocation } from 'react-router-dom';
 import { CircleInput } from "../../common/input";
-import TopPagination from "../../layout/TopPagination";
-import ListLoader from "../../common/list/ListLoader";
+import List from "../../layout/List";
+import DescriptionIcon from "@material-ui/icons/Description";
 
 const filters = [
   <SearchInput source="q" alwaysOn />,
@@ -26,38 +26,28 @@ const DocumentList = props => {
   const location = useLocation();
   const matches = location.pathname.split('/');
   const currentRecordId = matches.length > 2 ? decodeURIComponent(matches[2]) : undefined;
+  const xs = useMediaQuery(theme => theme.breakpoints.down('xs'), { noSsr: true });
 
   const selectedRowStyle = useCallback(record => ({
     backgroundColor: record.id === currentRecordId ? 'rgba(0, 0, 0, 0.04)' : undefined
   }), [currentRecordId]);
 
   return (
-    <ListBase perPage={15} sort={{ field: 'dc:created', order: 'DESC' }} {...props}>
-      <Box pl={3} pr={3} pt={1} pb={0}>
-        <Grid container>
-          <Grid item xs={9}>
-            <ListToolbar filters={filters} />
-          </Grid>
-          <Grid item xs={3}>
-            <Box display="flex" justifyContent="flex-end">
-              <TopPagination />
-            </Box>
-          </Grid>
-          <Grid item xs={12}>
-            <Box position="relative">
-              <Datagrid rowClick="show" rowStyle={selectedRowStyle}>
-                <TextField source="pair:label" />
-                <ReferenceField reference="Person" source="dc:creator" link={false}>
-                  <TextField source="pair:firstName" />
-                </ReferenceField>
-                <DateField source="dc:created" headerClassName={classes.alignCenter} cellClassName={classes.alignCenter} />
-              </Datagrid>
-              <ListLoader />
-            </Box>
-          </Grid>
-        </Grid>
-      </Box>
-    </ListBase>
+    <List perPage={15} sort={{ field: 'dc:created', order: 'DESC' }} filters={filters} {...props}>
+      {xs
+        ? <SimpleList
+            icon={<DescriptionIcon/>}
+            primaryText={record => record['pair:label']}
+          />
+        : <Datagrid rowClick="show" rowStyle={selectedRowStyle}>
+            <TextField source="pair:label"/>
+            <ReferenceField reference="Person" source="dc:creator" link={false}>
+              <TextField source="pair:firstName"/>
+            </ReferenceField>
+            <DateField source="dc:created" headerClassName={classes.alignCenter} cellClassName={classes.alignCenter}/>
+          </Datagrid>
+      }
+    </List>
   );
 }
 

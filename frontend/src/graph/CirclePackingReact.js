@@ -78,20 +78,20 @@ const CirclePackingReact = () => {
   const color = useCallback(node => d3color(node ? node.depth : null), []);
   const nodeClassName = useCallback(node => node.depth === 1 ? classes.nodeCircle : classes.nodeRole, [classes])
 
-  useEffect(() => {
-    if( root ) {
-      const paths = location.pathname.split('/');
-      if( paths.length > 2 ) {
-        const uri = decodeURIComponent(paths[2]);
-        const node = searchTree(root, uri);
-        if( node && node.id !== selectedNode?.id ) {
-          setSelectedNode(node);
-        }
-      } else {
-        history.push(basePath + '/' + encodeURIComponent(root.id) + '/show');
-      }
-    }
-  }, [location, history, root, selectedNode, setSelectedNode, basePath]);
+  // useEffect(() => {
+  //   if( root ) {
+  //     const paths = location.pathname.split('/');
+  //     if( paths.length > 2 ) {
+  //       const uri = decodeURIComponent(paths[2]);
+  //       const node = searchTree(root, uri);
+  //       if( node && node.id !== selectedNode?.id ) {
+  //         setSelectedNode(node);
+  //       }
+  //     } else {
+  //       history.push(basePath + '/' + encodeURIComponent(root.id) + '/show');
+  //     }
+  //   }
+  // }, [location, history, root, selectedNode, setSelectedNode, basePath]);
 
   useEffect(() => {
     if( selectedNode ) {

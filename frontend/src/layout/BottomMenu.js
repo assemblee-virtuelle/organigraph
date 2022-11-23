@@ -1,17 +1,10 @@
 import React from 'react';
 import { getResources } from 'react-admin';
-import { Tabs, Tab, useMediaQuery, makeStyles } from '@material-ui/core';
+import { BottomNavigation, BottomNavigationAction, makeStyles } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router';
 import { shallowEqual, useSelector } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
-  tabs: {
-    minHeight: 0,
-  },
-  tab: {
-    minWidth: 55,
-    color: 'black !important'
-  },
   wrapper: {
     flexDirection: "row",
     alignItems: "unset",
@@ -24,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const TabsMenu = () => {
+const BottomMenu = () => {
   const history = useHistory();
 
   const classes = useStyles();
@@ -36,28 +29,23 @@ const TabsMenu = () => {
   const resources = useSelector(getResources, shallowEqual);
 
   return (
-    <Tabs
+    <BottomNavigation
       value={currentResource}
       onChange={(_, value) => history.push('/' + value)}
-      indicatorColor="primary"
-      textColor="primary"
-      scrollButtons="auto"
-      className={classes.tabs}
+      showLabels
     >
       {resources
         .filter(resource => resource.hasList)
         .map(resource => (
-          <Tab
+          <BottomNavigationAction
             key={resource.name}
             icon={React.createElement(resource.icon)}
             label={resource.options.label}
             value={resource.name}
-            // className={classes.tab}
-            classes={{ root: classes.tab, wrapper: classes.wrapper, labelIcon: classes.labelIcon }}
           />
         ))}
-    </Tabs>
+    </BottomNavigation>
   );
 };
 
-export default TabsMenu;
+export default BottomMenu;

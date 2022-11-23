@@ -1,6 +1,15 @@
 import React from 'react';
 import { useListContext, useRecordContext, Link, Button } from 'react-admin';
-import {Box, LinearProgress, List, ListItem, ListItemIcon, ListItemText, makeStyles} from '@material-ui/core';
+import {
+  Box,
+  LinearProgress,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  makeStyles,
+  useMediaQuery
+} from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import ListIcon from '@material-ui/icons/List';
 
@@ -33,9 +42,11 @@ const SmallList = ({ icon, primaryText, secondaryText, emptyText, target }) => {
   const { ids, data, basePath, total, perPage, loaded, hasCreate } = useListContext();
   const record = useRecordContext();
   const classes = useStyles();
-  const searchParams = new URLSearchParams({ filter: JSON.stringify({ [target]: record.id }) });
+  const xs = useMediaQuery(theme => theme.breakpoints.down('xs'), { noSsr: true });
 
-  if (!loaded) return <LinearProgress />
+  if (!loaded || !record) return <LinearProgress />
+
+  const searchParams = new URLSearchParams({ filter: JSON.stringify({ [target]: record.id }) });
 
   return (
     <>
@@ -45,7 +56,7 @@ const SmallList = ({ icon, primaryText, secondaryText, emptyText, target }) => {
             <ListItem dense className={i % 2 ? classes.listItemWhite : classes.listItemGrey}>
               <ListItemIcon className={classes.listIcon}>{icon}</ListItemIcon>
               <ListItemText primary={primaryText(data[id])} className={classes.primaryText} />
-              <ListItemText primary={secondaryText(data[id])} className={classes.secondaryText} />
+              {!xs && <ListItemText primary={secondaryText(data[id])} className={classes.secondaryText} />}
             </ListItem>
           </Link>
         ))}

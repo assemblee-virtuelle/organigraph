@@ -1,40 +1,25 @@
 import React from 'react';
-import { Box, Grid } from '@material-ui/core';
-import { ListBase, ListToolbar, SearchInput } from "react-admin";
+import { useMediaQuery} from '@material-ui/core';
+import { SearchInput } from "react-admin";
 import { GridList } from '@semapps/list-components';
 import { AvatarWithLabelField } from '@semapps/field-components';
 import { CircleInput } from "../../common/input";
-import TopPagination from "../../layout/TopPagination";
-import ListLoader from "../../common/list/ListLoader";
+import List from "../../layout/List";
 
 const filters = [
   <SearchInput source="q" alwaysOn />,
   <CircleInput source="pair:affiliatedBy" hiddenLabel label="" alwaysOn placeholder="Cercle" />
 ];
 
-const PersonList = props => (
-  <ListBase {...props} perPage={30} sort={{ field: 'pair:lastName', order: 'ASC' }}>
-    <Box pl={3} pr={3} pt={1} pb={0}>
-      <Grid container>
-        <Grid item xs={9}>
-          <ListToolbar filters={filters} />
-        </Grid>
-        <Grid item xs={3}>
-          <Box display="flex" justifyContent="flex-end">
-            <TopPagination />
-          </Box>
-        </Grid>
-        <Grid item xs={12}>
-          <Box position="relative">
-            <GridList xs={2} linkType="show">
-              <AvatarWithLabelField label="pair:label" image="pair:depictedBy" />
-            </GridList>
-            <ListLoader />
-          </Box>
-        </Grid>
-      </Grid>
-    </Box>
-  </ListBase>
-);
+const PersonList = props => {
+  const xs = useMediaQuery(theme => theme.breakpoints.down('xs'), { noSsr: true });
+  return (
+    <List {...props} perPage={30} sort={{ field: 'pair:lastName', order: 'ASC' }} filters={filters}>
+      <GridList xs={4} sm={2} linkType="show" spacing={xs ? 1 : 3}>
+        <AvatarWithLabelField label="pair:label" image="pair:depictedBy" />
+      </GridList>
+    </List>
+  );
+}
 
 export default PersonList;

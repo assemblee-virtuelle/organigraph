@@ -29,12 +29,12 @@ const CircleShow = props => {
           </SingleFieldList>
         </ReferenceArrayField>
         <ReferenceArrayField reference="Person" source="og:leadBy" perPage={4} inversePredicate="og:leads">
-          <GridList xs={3} linkType="show">
+          <GridList xs={6} sm={3} linkType="show">
             <AvatarWithLabelField label="pair:label" image="pair:depictedBy" labelColor="secondary" />
           </GridList>
         </ReferenceArrayField>
         <ReferenceManyField label="Membres" reference="Person" target="pair:affiliatedBy" perPage={4} sort={{ field: 'pair:label', order: 'ASC' }} filter={{ _predicates: ['pair:label', 'pair:depictedBy'] }}>
-          <GridList xs={3} linkType="show" emptyText="Aucun membre dans ce cercle">
+          <GridList xs={6} sm={3} linkType="show" emptyText="Aucun membre dans ce cercle">
             <AvatarWithLabelField label="pair:label" image="pair:depictedBy" labelColor="secondary" />
           </GridList>
         </ReferenceManyField>

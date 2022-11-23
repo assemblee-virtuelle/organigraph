@@ -1,6 +1,6 @@
 import React from 'react';
 import { useShowContext, EditButton } from 'react-admin';
-import { Typography, Box, Grid } from "@material-ui/core";
+import {Typography, Box, Grid, useMediaQuery} from "@material-ui/core";
 import FieldsList from "../common/list/FieldsList";
 
 const ShowSide = props => {
@@ -25,6 +25,8 @@ const ShowSide = props => {
     version,
   } = useShowContext(props);
 
+  const xs = useMediaQuery(theme => theme.breakpoints.down('xs'), { noSsr: true });
+
   if( !record ) return null;
 
   return(
@@ -38,7 +40,7 @@ const ShowSide = props => {
           </Box>
         </Grid>
         <Grid item xs={3}>
-          <Box pt={2} pr={2} display="flex" justifyContent="flex-end">
+          <Box pt={xs ? 1 : 2} pr={xs ? 1 : 2} display="flex" justifyContent="flex-end">
             {hasEdit && <EditButton basePath={basePath} record={record} />}
             {actions && actions.map((action, i) => React.cloneElement(action, { key: i }))}
           </Box>

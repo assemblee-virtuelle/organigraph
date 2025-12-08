@@ -33,13 +33,7 @@ export const UserInput = props => (
 );
 
 export const CircleInput = props => (
-  <ReferenceInput
-    reference="Circle"
-    sort={{ field: 'pair:label', order: 'ASC' }}
-    filter={{ _predicates: ['pair:label', 'pair:partOf'] }}
-    perPage={100}
-    {...props}
-  >
+  <ReferenceInput reference="Circle" sort={{ field: 'pair:label', order: 'ASC' }} perPage={100} {...props}>
     <SelectInput optionText="pair:label" allowNull />
   </ReferenceInput>
 );

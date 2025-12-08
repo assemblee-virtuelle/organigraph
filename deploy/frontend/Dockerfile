@@ -1,9 +1,9 @@
-FROM node:12.16-alpine
+FROM node:14.16-alpine
 
 # Default arguments
 ARG SELECTED_BRANCH=master
 
-WORKDIR /archipelago
+WORKDIR /app
 
 RUN node -v
 RUN npm -v
@@ -14,14 +14,14 @@ RUN yarn global add serve
 
 # Force cache invalidation if the master branch changed since last build
 # If we don't do that, Docker may skip the git clone command
-ADD https://api.github.com/repos/assemblee-virtuelle/archipelago/git/refs/heads/$SELECTED_BRANCH ../git-version.json
+ADD https://api.github.com/repos/assemblee-virtuelle/organigraph/git/refs/heads/$SELECTED_BRANCH ../git-version.json
 
-RUN git clone https://github.com/assemblee-virtuelle/archipelago.git /archipelago
+RUN git clone https://github.com/assemblee-virtuelle/organigraph.git /app
 
 RUN git checkout $SELECTED_BRANCH
 
-ADD app /archipelago/frontend
-WORKDIR /archipelago/frontend
+ADD app /app/frontend
+WORKDIR /app/frontend
 
 RUN yarn install
 

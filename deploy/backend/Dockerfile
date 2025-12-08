@@ -3,7 +3,7 @@ FROM node:14.16-alpine
 # Default arguments
 ARG SELECTED_BRANCH=master
 
-WORKDIR /organigraph
+WORKDIR /app
 
 RUN node -v
 RUN npm -v
@@ -16,12 +16,12 @@ RUN yarn global add pm2
 # If we don't do that, Docker may skip the git clone command
 ADD https://api.github.com/repos/assemblee-virtuelle/organigraph/git/refs/heads/$SELECTED_BRANCH ../git-version.json
 
-RUN git clone https://github.com/assemblee-virtuelle/organigraph.git /organigraph
+RUN git clone https://github.com/assemblee-virtuelle/organigraph.git /app
 
 RUN git checkout $SELECTED_BRANCH
 
-ADD app /organigraph/backend
-WORKDIR /organigraph/backend
+ADD app /app/backend
+WORKDIR /app/backend
 
 RUN yarn install
 

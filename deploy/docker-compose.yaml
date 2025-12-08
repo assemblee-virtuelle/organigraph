@@ -42,10 +42,10 @@ services:
       - fuseki
       - redis
     volumes:
-      - ./middleware/actors:/archipelago/middleware/actors
-      - ./middleware/logs:/archipelago/middleware/logs
-      - ./middleware/jwt:/archipelago/middleware/jwt
-      - ./middleware/uploads:/archipelago/middleware/uploads
+      - ./data/backend/actors:/app/backend/actors
+      - ./data/backend/logs:/app/backend/logs
+      - ./data/backend/jwt:/app/backend/jwt
+      - ./data/backend/uploads:/app/backend/uploads
     expose:
       - "3000"
     labels:

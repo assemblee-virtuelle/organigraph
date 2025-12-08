@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReferenceInput, ReferenceArrayInput } from '@semapps/input-components';
-import { AutocompleteArrayInput, RadioButtonGroupInput, RadioInput, SelectInput } from 'react-admin';
+import { AutocompleteArrayInput, RadioButtonGroupInput, SelectInput } from 'react-admin';
 
 export const DocumentsInput = props => (
   <ReferenceArrayInput reference="Document" {...props}>

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
-import { ListBase, Datagrid, TextField, ListToolbar, SearchInput } from 'react-admin';
-import { Box, Grid, makeStyles } from '@material-ui/core';
+import { ListBase, Datagrid, TextField, ListToolbar } from 'react-admin';
+import { Box, Grid } from '@material-ui/core';
 import { ReferenceField } from '@semapps/field-components';
 import { useLocation } from 'react-router-dom';
 import { CircleInput, StatusInput, UserInput } from '../../common/input';
@@ -12,15 +12,6 @@ const filters = [
   <StatusInput source="pair:hasStatus" hiddenLabel label="" alwaysOn placeholder="Status" />,
   <UserInput source="pair:assignedTo" hiddenLabel label="" alwaysOn placeholder="Assigné à" />
 ];
-
-const useStyles = makeStyles(theme => ({
-  alignCenter: {
-    textAlign: 'center'
-  },
-  alignRight: {
-    textAlign: 'right'
-  }
-}));
 
 const DocumentList = props => {
   const location = useLocation();

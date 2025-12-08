@@ -1,15 +1,16 @@
 import React from 'react';
 import { ShowBase, TextField, ChipField, DateField, SingleFieldList, ReferenceManyField } from 'react-admin';
 import { MultiUrlField, AvatarWithLabelField, ReferenceArrayField, ReferenceField } from '@semapps/field-components';
-import MarkdownField from "../../common/field/MarkdownField";
-import ShowSide from "../../layout/ShowSide";
-import CircleTitle from "./CircleTitle";
+import MarkdownField from '../../common/field/MarkdownField';
+import ShowSide from '../../layout/ShowSide';
+import CircleTitle from './CircleTitle';
 import DescriptionIcon from '@material-ui/icons/Description';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import EventIcon from '@material-ui/icons/Event';
-import SmallList from "../../common/list/SmallList";
-import GridList from "../../common/list/GridList";
-import domainMapping from "../../config/domainMapping";
-import useFutureEventSparql from "../../hooks/useFutureEventSparql";
+import SmallList from '../../common/list/SmallList';
+import GridList from '../../common/list/GridList';
+import domainMapping from '../../config/domainMapping';
+import useFutureEventSparql from '../../hooks/useFutureEventSparql';
 
 const CircleShow = props => {
   const futureEventSparql = useFutureEventSparql();
@@ -28,25 +29,37 @@ const CircleShow = props => {
             <ChipField color="secondary" source="pair:label" />
           </SingleFieldList>
         </ReferenceArrayField>
-        <ReferenceArrayField reference="Person" source="og:leadBy" perPage={4} inversePredicate="og:leads">
+        <ReferenceArrayField
+          reference="Person"
+          source="og:leadBy"
+          target="og:leads"
+          perPage={4}
+          inversePredicate="og:leads"
+        >
           <GridList xs={3} linkType="show">
             <AvatarWithLabelField label="pair:label" image="pair:depictedBy" labelColor="secondary" />
           </GridList>
         </ReferenceArrayField>
-        <ReferenceManyField label="Membres" reference="Person" target="pair:affiliatedBy" perPage={4} sort={{ field: 'pair:label', order: 'ASC' }} filter={{ _predicates: ['pair:label', 'pair:depictedBy'] }}>
+        <ReferenceManyField
+          label="Membres"
+          reference="Person"
+          target="pair:affiliatedBy"
+          perPage={4}
+          sort={{ field: 'pair:label', order: 'ASC' }}
+          filter={{ _predicates: ['pair:label', 'pair:depictedBy'] }}
+        >
           <GridList xs={3} linkType="show" emptyText="Aucun membre dans ce cercle">
             <AvatarWithLabelField label="pair:label" image="pair:depictedBy" labelColor="secondary" />
           </GridList>
         </ReferenceManyField>
-        <ReferenceManyField label="Dernières actualités" reference="Document" target="pair:documents" perPage={4} sort={{ field: 'dc:created', order: 'DESC' }} filter={{ _predicates: ['pair:label', 'dc:created'] }}>
-          <SmallList
-            icon={<DescriptionIcon />}
-            primaryText={record => record['pair:label']}
-            secondaryText={record => <DateField record={record} source="dc:created" />}
-            emptyText="Aucune actualité liée à ce cercle"
-          />
-        </ReferenceManyField>
-        <ReferenceManyField label="Prochaines réunions" reference="Event" target="pair:concerns" perPage={4} sort={{ field: 'pair:endDate', order: 'ASC' }} filter={{ sparqlWhere: futureEventSparql, _predicates: ['pair:label', 'pair:startDate', 'pair:endDate'] }}>
+        <ReferenceManyField
+          label="Prochaines réunions"
+          reference="Event"
+          target="pair:concerns"
+          perPage={4}
+          sort={{ field: 'pair:endDate', order: 'ASC' }}
+          filter={{ sparqlWhere: futureEventSparql, _predicates: ['pair:label', 'pair:startDate', 'pair:endDate'] }}
+        >
           <SmallList
             icon={<EventIcon />}
             primaryText={record => record['pair:label']}
@@ -54,9 +67,43 @@ const CircleShow = props => {
             emptyText="Aucune réunion prévue pour le moment"
           />
         </ReferenceManyField>
+        <ReferenceManyField
+          label="Projets"
+          reference="Task"
+          target="pair:documents"
+          perPage={4}
+          sort={{ field: 'dc:created', order: 'DESC' }}
+          filter={{ _predicates: ['pair:label', 'dc:created'] }}
+        >
+          <SmallList
+            icon={<CheckBoxIcon />}
+            primaryText={record => record['pair:label']}
+            secondaryText={record => (
+              <ReferenceField record={record} reference="Status" source="pair:hasStatus" link={false}>
+                <TextField source="pair:label" />
+              </ReferenceField>
+            )}
+            emptyText="Aucun projet lié à ce cercle"
+          />
+        </ReferenceManyField>
+        <ReferenceManyField
+          label="Documents"
+          reference="Document"
+          target="pair:documents"
+          perPage={4}
+          sort={{ field: 'dc:created', order: 'DESC' }}
+          filter={{ _predicates: ['pair:label', 'dc:created'] }}
+        >
+          <SmallList
+            icon={<DescriptionIcon />}
+            primaryText={record => record['pair:label']}
+            secondaryText={record => <DateField record={record} source="dc:created" />}
+            emptyText="Aucun document lié à ce cercle"
+          />
+        </ReferenceManyField>
       </ShowSide>
     </ShowBase>
   );
-}
+};
 
 export default CircleShow;

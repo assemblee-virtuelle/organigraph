@@ -1,15 +1,15 @@
-// import CircleEdit from './CircleEdit';
+import CircleEdit from './CircleEdit';
 import CircleList from './CircleList';
 import CircleShow from './CircleShow';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-// import CircleCreate from "./CircleCreate";
+import CircleCreate from './CircleCreate';
 
 export default {
   config: {
     list: CircleList,
     show: CircleShow,
-    // create: CircleCreate,
-    // edit: CircleEdit,
+    create: CircleCreate,
+    edit: CircleEdit,
     icon: RadioButtonUncheckedIcon,
     options: {
       label: 'Cercles',
@@ -30,11 +30,11 @@ export default {
       name: 'Cercle |||| Cercles',
       fields: {
         'pair:label': 'Nom',
-        'og:purpose': 'Raison d\'être',
+        'og:purpose': "Raison d'être",
         'og:accountabilities': 'Redevabilités',
         'og:domain': 'Domaine',
         'og:leadBy': 'Référents',
-        'pair:affiliatedBy': 'Membre',
+        'pair:affiliates': 'Membres',
         'pair:involves': 'Contributeurs',
         'pair:partOf': 'Fait partie de',
         'pair:hasPart': 'Sous-cercles',

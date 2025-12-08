@@ -1,0 +1,18 @@
+[
+  {
+    "label": "En attente",
+    "slug": "waiting"
+  },
+  {
+    "label": "Prêt à démarrer",
+    "slug": "ready"
+  },
+  {
+    "label": "En cours",
+    "slug": "in-progress"
+  },
+  {
+    "label": "Fait",
+    "slug": "done"
+  }
+]

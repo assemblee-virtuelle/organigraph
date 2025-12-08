@@ -1,40 +1,39 @@
-// import DocumentEdit from './DocumentEdit';
-import DocumentList from './DocumentList';
-import DocumentShow from './DocumentShow';
-// import DocumentCreate from "./DocumentCreate";
-// import DescriptionIcon from '@material-ui/icons/Description';
-import AnnouncementIcon from '@material-ui/icons/Announcement';
+import DocumentEdit from "./DocumentEdit";
+import DocumentList from "./DocumentList";
+import DocumentShow from "./DocumentShow";
+import DocumentCreate from "./DocumentCreate";
+import DescriptionIcon from "@material-ui/icons/Description";
 
 export default {
   config: {
     list: DocumentList,
     show: DocumentShow,
-    // create: DocumentCreate,
-    // edit: DocumentEdit,
-    icon: AnnouncementIcon,
+    create: DocumentCreate,
+    edit: DocumentEdit,
+    icon: DescriptionIcon,
     options: {
-      label: 'Actualités',
-      panelSize: 5
-    }
+      label: "Documents",
+      panelSize: 5,
+    },
   },
   dataModel: {
-    types: ['pair:Document'],
+    types: ["pair:Document"],
     fieldsMapping: {
-      title: 'pair:label'
-    }
+      title: "pair:label",
+    },
   },
   translations: {
     fr: {
-      name: 'Actualité |||| Actualités',
+      name: "Document |||| Documents",
       fields: {
-        'pair:label': 'Titre',
-        'pair:description': 'Description',
-        'pair:comment': 'Courte description',
-        'pair:hasType': 'Type',
-        'pair:documents': 'Cercle',
-        'dc:created': 'Posté',
-        'dc:creator': 'Auteur'
-      }
-    }
-  }
+        "pair:label": "Titre",
+        "pair:description": "Description",
+        "pair:comment": "Courte description",
+        "pair:hasType": "Type",
+        "pair:documents": "Cercle",
+        "dc:created": "Posté",
+        "dc:creator": "Auteur",
+      },
+    },
+  },
 };

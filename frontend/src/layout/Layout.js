@@ -1,15 +1,15 @@
 import React from 'react';
 import { Notification } from 'react-admin';
 import { Grid, Box, useMediaQuery, ThemeProvider, makeStyles, Typography } from '@material-ui/core';
-// import { UserMenu, LogoutButton } from '@semapps/auth-provider';
+import { UserMenu, LogoutButton } from '@semapps/auth-provider';
 import AppBar from './AppBar';
 import ScrollToTop from './ScrollToTop';
 
 const useStyles = makeStyles(theme => ({
   topBar: {
     height: 45,
-    backgroundImage: 'radial-gradient(circle at 50% 14em, #ADDEEC 0%, #28ccfb 100%)',
-    paddingTop: 5,
+    backgroundImage: 'radial-gradient(circle at 50% 14em, #71C252 0%, #21b082 100%)',
+    paddingTop: 5
   },
   userMenu: {
     float: 'right',
@@ -36,7 +36,7 @@ const Layout = ({ appBar, logout, theme, title, children }) => {
             </Grid>
             <Grid item xs={6}>
               <Box pr={1}>
-                {/*<UserMenu logout={<LogoutButton />} classes={{ user: classes.userMenu }} />*/}
+                <UserMenu logout={<LogoutButton />} classes={{ user: classes.userMenu }} />
               </Box>
             </Grid>
           </Grid>

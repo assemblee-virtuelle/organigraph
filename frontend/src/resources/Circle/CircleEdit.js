@@ -4,7 +4,7 @@ import { MarkdownInput } from '@semapps/markdown-components';
 import { MultiLinesInput } from '@semapps/input-components';
 import { UsersInput, CircleInput } from '../../common/input';
 import CircleTitle from './CircleTitle';
-import EditSide from "../../layout/EditSide";
+import EditSide from '../../layout/EditSide';
 
 export const CircleEdit = props => (
   <EditBase {...props}>
@@ -14,7 +14,7 @@ export const CircleEdit = props => (
       <MarkdownInput multiline source="og:accountabilities" fullWidth />
       <TextInput source="og:domain" fullWidth />
       <UsersInput source="og:leadBy" />
-      <UsersInput source="pair:involves" />
+      <UsersInput source="pair:affiliates" />
       <MultiLinesInput source="pair:homePage" fullWidth />
       <CircleInput source="pair:partOf" />
     </EditSide>

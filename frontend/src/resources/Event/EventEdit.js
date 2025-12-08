@@ -1,11 +1,10 @@
 import React from 'react';
 import { TextInput, EditBase } from 'react-admin';
-import frLocale from 'date-fns/locale/fr';
-import { DateTimeInput } from '@semapps/date-components';
+import DateTimeInput from '../../common/input/DateTimeInput';
 import { MarkdownInput } from '@semapps/markdown-components';
-import EditSide from "../../layout/EditSide";
+import EditSide from '../../layout/EditSide';
 import EventTitle from './EventTitle';
-import { CircleInput } from "../../common/input";
+import { CircleInput } from '../../common/input';
 
 const EventEdit = props => (
   <EditBase {...props}>
@@ -13,28 +12,8 @@ const EventEdit = props => (
       <TextInput source="pair:label" fullWidth />
       <CircleInput source="pair:concerns" />
       <MarkdownInput multiline source="pair:description" fullWidth />
-      <DateTimeInput
-        source="pair:startDate"
-        options={{
-          format: 'dd/MM/yyyy à HH:mm',
-          ampm: false
-        }}
-        providerOptions={{
-          locale: frLocale
-        }}
-        fullWidth
-      />
-      <DateTimeInput
-        source="pair:endDate"
-        options={{
-          format: 'dd/MM/yyyy à HH:mm',
-          ampm: false
-        }}
-        providerOptions={{
-          locale: frLocale
-        }}
-        fullWidth
-      />
+      <DateTimeInput source="pair:startDate" />
+      <DateTimeInput source="pair:endDate" />
     </EditSide>
   </EditBase>
 );

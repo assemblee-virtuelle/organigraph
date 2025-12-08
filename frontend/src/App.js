@@ -1,18 +1,30 @@
-import React from 'react';
-import { Admin } from 'react-admin';
-import { SsoLoginPage, LogoutButton } from '@semapps/auth-provider';
-import { createBrowserHistory as createHistory } from 'history';
+import React from "react";
+import { Admin } from "react-admin";
+import { SsoLoginPage, LogoutButton } from "@semapps/auth-provider";
+import { Avatar, Button } from "@material-ui/core";
+import { createBrowserHistory as createHistory } from "history";
 
-import i18nProvider from './config/i18nProvider';
-import authProvider from './config/authProvider';
-import dataProvider from './config/dataProvider';
-import theme from './config/theme';
+import i18nProvider from "./config/i18nProvider";
+import authProvider from "./config/authProvider";
+import dataProvider from "./config/dataProvider";
+import theme from "./config/theme";
 
-import * as resources from './resources';
+import * as resources from "./resources";
 import SplitViewResource from "./layout/SplitViewResource";
-import Layout from './layout/Layout';
+import Layout from "./layout/Layout";
 
 const history = createHistory();
+
+const LoginPage = (props) => {
+  return (
+    <SsoLoginPage
+      buttons={[
+        <Button startIcon={<Avatar src="/logo192.png" />}>Reconnexion</Button>,
+      ]}
+      {...props}
+    ></SsoLoginPage>
+  );
+};
 
 const App = () => (
   <Admin
@@ -23,7 +35,7 @@ const App = () => (
     i18nProvider={i18nProvider}
     layout={Layout}
     theme={theme}
-    loginPage={SsoLoginPage}
+    loginPage={LoginPage}
     logoutButton={LogoutButton}
   >
     {Object.entries(resources).map(([key, resource]) => (

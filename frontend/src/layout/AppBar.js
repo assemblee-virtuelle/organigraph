@@ -1,8 +1,8 @@
 import React from 'react';
-// import { CreateButton } from 'react-admin';
+import { CreateButton } from 'react-admin';
 import { Box, makeStyles, AppBar as MuiAppBar, Grid } from '@material-ui/core';
-// import { useLocation } from 'react-router-dom';
-import TabsMenu from "./TabsMenu";
+import { useLocation } from 'react-router-dom';
+import TabsMenu from './TabsMenu';
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     verticalAlign: 'middle',
     [theme.breakpoints.down('sm')]: {
       width: 32,
-      height: 32,
+      height: 32
     }
   },
   logoText: {
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.common.white,
     verticalAlign: 'middle',
     [theme.breakpoints.down('sm')]: {
-      fontSize: 18,
+      fontSize: 18
     }
   },
   openButton: {
@@ -44,17 +44,21 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     lineHeight: 1,
     color: theme.palette.common.white
+  },
+  createButton: {
+    position: 'relative',
+    top: -3
   }
 }));
 
 const AppBar = () => {
   const classes = useStyles();
-  // const location = useLocation();
-  // const matches = location.pathname.match(/^\/([^/]+)/);
-  // const resource = matches ? matches[1] : 'Circle';
+  const location = useLocation();
+  const matches = location.pathname.match(/^\/([^/]+)/);
+  const resource = matches ? matches[1] : 'Circle';
 
   return (
-    <MuiAppBar position="sticky" className={classes.root}>
+    <MuiAppBar position="sticky">
       <Box className={classes.header}>
         <Grid container>
           <Grid item xs={8}>
@@ -62,7 +66,7 @@ const AppBar = () => {
           </Grid>
           <Grid item xs={4}>
             <Box display="flex" justifyContent="flex-end">
-              {/*<CreateButton basePath={'/' + resource} />*/}
+              <CreateButton basePath={'/' + resource} className={classes.createButton} />
             </Box>
           </Grid>
         </Grid>

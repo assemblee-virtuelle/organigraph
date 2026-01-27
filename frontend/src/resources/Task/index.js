@@ -33,6 +33,7 @@ export default {
         'pair:documents': 'Cercle',
         'pair:assignedTo': 'Assigné à',
         'pair:hasStatus': 'Statut',
+        'pair:dueDate': "Date d'échéance",
         'dc:created': 'Créé le',
         'dc:creator': 'Auteur'
       }

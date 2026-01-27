@@ -13,7 +13,7 @@ const filters = [
   <UserInput source="pair:assignedTo" hiddenLabel label="" alwaysOn placeholder="Assigné à" />
 ];
 
-const DocumentList = props => {
+const TaskList = props => {
   const location = useLocation();
   const matches = location.pathname.split('/');
   const currentRecordId = matches.length > 2 ? decodeURIComponent(matches[2]) : undefined;
@@ -60,4 +60,4 @@ const DocumentList = props => {
   );
 };
 
-export default DocumentList;
+export default TaskList;

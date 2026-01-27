@@ -7,7 +7,7 @@ import ShowSide from '../../layout/ShowSide';
 import MarkdownField from '../../common/field/MarkdownField';
 import ViewSourceButton from '../../common/buttons/ViewSourceButton';
 
-const DocumentShow = props => (
+const TaskShow = props => (
   <ShowBase {...props}>
     <ShowSide title={<DocumentTitle />} actions={[<ViewSourceButton source="pair:webPage" />]}>
       <MarkdownField source="pair:description" addLabel={false} />
@@ -27,8 +27,9 @@ const DocumentShow = props => (
         </SingleFieldList>
       </ReferenceArrayField>
       <DateField source="dc:created" showTime />
+      <DateField source="pair:dueDate" />
     </ShowSide>
   </ShowBase>
 );
 
-export default DocumentShow;
+export default TaskShow;

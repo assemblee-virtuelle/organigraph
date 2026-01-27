@@ -1,7 +1,7 @@
 import React from 'react';
 
-const DocumentTitle = ({ record }) => {
+const TaskTitle = ({ record }) => {
   return <span>{record ? record['pair:label'] : ''}</span>;
 };
 
-export default DocumentTitle;
+export default TaskTitle;

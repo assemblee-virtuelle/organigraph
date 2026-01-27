@@ -3,7 +3,7 @@ import { CreateBase, TextInput, useAuthProvider } from 'react-admin';
 import CreateSide from '../../layout/CreateSide';
 import { CircleInput } from '../../common/input';
 
-const DocumentCreate = props => {
+const TaskCreate = props => {
   const authProvider = useAuthProvider();
 
   const transform = useCallback(
@@ -29,4 +29,4 @@ const DocumentCreate = props => {
   );
 };
 
-export default DocumentCreate;
+export default TaskCreate;

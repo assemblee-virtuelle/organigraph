@@ -1,6 +1,6 @@
 # Docker Compose definition used by Coolify to build and run OrganiGraph straight
-# from this repository. The images are built on the Coolify server from the
-# Dockerfiles in /deploy/coolify, nothing is pulled from a registry.
+# from this repository (base directory /deploy/coolify). The images are built on the Coolify server from the
+# Dockerfiles next to this file, nothing is pulled from a registry.
 #
 # Before `docker compose build` and `up`, Coolify writes a .env file next to this
 # file with the variables defined in its UI plus generated ones:
@@ -15,7 +15,7 @@
 services:
   backend:
     build:
-      context: .
+      context: ../..
       dockerfile: deploy/coolify/backend.dockerfile
     restart: always
     depends_on:
@@ -47,7 +47,7 @@ services:
 
   frontend:
     build:
-      context: .
+      context: ../..
       dockerfile: deploy/coolify/frontend.dockerfile
       args:
         REACT_APP_MIDDLEWARE_URL: https://${SERVICE_FQDN_BACKEND}/

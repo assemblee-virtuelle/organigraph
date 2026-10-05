@@ -1,0 +1,74 @@
+# Docker Compose definition used by Coolify to build and run OrganiGraph straight
+# from this repository. The images are built on the Coolify server from the
+# Dockerfiles in /deploy/coolify, nothing is pulled from a registry.
+#
+# Before `docker compose build` and `up`, Coolify writes a .env file next to this
+# file with the variables defined in its UI plus generated ones:
+#   SERVICE_FQDN_BACKEND / SERVICE_FQDN_FRONTEND  host of each service, as set in the
+#                                                 Domains field
+# A value starting with `${` becomes an editable variable in Coolify (with its default).
+#
+# Fuseki is an external one (on Reconnexion's server, the one of shared-infra): the
+# backend joins the "coolify" network to reach it. Redis only holds the cache, so it
+# runs inside the stack.
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: deploy/coolify/backend.dockerfile
+    restart: always
+    depends_on:
+      - organigraph-redis
+    expose:
+      - '3000'
+    # Coolify adds the stack's own network to every service; only the backend
+    # also needs the shared one, where Fuseki lives.
+    networks:
+      - coolify
+    environment:
+      SEMAPPS_HOME_URL: https://${SERVICE_FQDN_BACKEND}/
+      SEMAPPS_FRONT_URL: https://${SERVICE_FQDN_FRONTEND}/
+      SEMAPPS_PORT: '3000'
+      SEMAPPS_INSTANCE_NAME: ${INSTANCE_NAME:-OrganiGraph}
+      SEMAPPS_SPARQL_ENDPOINT: ${SPARQL_ENDPOINT}
+      SEMAPPS_JENA_USER: ${JENA_USER:-admin}
+      SEMAPPS_JENA_PASSWORD: ${JENA_PASSWORD}
+      SEMAPPS_MAIN_DATASET: ${MAIN_DATASET:-organigraph}
+      SEMAPPS_OIDC_ISSUER: ${OIDC_ISSUER}
+      SEMAPPS_OIDC_CLIENT_ID: ${OIDC_CLIENT_ID}
+      SEMAPPS_OIDC_CLIENT_SECRET: ${OIDC_CLIENT_SECRET}
+      SEMAPPS_REDIS_CACHE_URL: redis://organigraph-redis:6379/0
+    volumes:
+      # Losing the key pairs invalidates every issued token and every actor signature
+      - backend-jwt:/app/backend/jwt
+      - backend-actors:/app/backend/actors
+      - backend-uploads:/app/backend/uploads
+
+  frontend:
+    build:
+      context: .
+      dockerfile: deploy/coolify/frontend.dockerfile
+      args:
+        REACT_APP_MIDDLEWARE_URL: https://${SERVICE_FQDN_BACKEND}/
+        REACT_APP_INSTANCE_NAME: ${INSTANCE_NAME:-OrganiGraph}
+    restart: always
+    expose:
+      - '4000'
+
+  organigraph-redis:
+    image: redis:7-alpine
+    restart: always
+    command: ['redis-server', '--appendonly', 'yes']
+    volumes:
+      - redis-data:/data
+
+volumes:
+  backend-jwt:
+  backend-actors:
+  backend-uploads:
+  redis-data:
+
+networks:
+  coolify:
+    external: true
